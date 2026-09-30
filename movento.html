@@ -274,8 +274,14 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
           <input type="number" id="lw" value="500" inputmode="decimal" aria-label="Clear internal cabinet width">
           <button type="button" data-step="10" data-for="lw">+</button>
         </div>
+        <p class="lab" style="margin-top:14px">Drawer side thickness</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="sideT">&minus;</button>
+          <input type="number" id="sideT" value="16" inputmode="decimal" aria-label="Drawer side thickness">
+          <button type="button" data-step="1" data-for="sideT">+</button>
+        </div>
         <table style="margin-top:12px"><tbody id="boxbody"></tbody></table>
-        <p class="note">Blum's own figures. Drawer sides no thicker than 16 mm, minimum rear notch 50 mm.</p>
+        <p class="note">Blum fix the <b>inside</b> width at clear width minus 42, so the outside moves with the side thickness. 16 mm is the maximum.</p>
       </div>
     </details>
 
@@ -412,7 +418,7 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
     st.gap = val('gap', st.gap);
     st.botOff = val('botOff', st.botOff);
     var m = { panelH: val('panelH',720), panelD: val('panelD',560), lw: val('lw',500),
-              floor: val('floor',19), shelfT: val('shelfT',18), anchor: val('anchor',0),
+              floor: val('floor',19), shelfT: val('shelfT',18), anchor: val('anchor',0), sideT: val('sideT',16),
               setback: val('setback',3), gap: st.gap, botOff: st.botOff,
               nl: nl, rlen: nl+11, mind: nl+20, rows: [] };
     var y = st.botOff, surf = m.floor + m.anchor;
@@ -441,6 +447,7 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
       if (r.h < 80)
         out.push('Drawer '+r.n+' is only '+fmt(r.h)+' mm. Tight for MOVENTO - test fit one first.');
     });
+    if (m.sideT > 16) out.push('Drawer sides are '+fmt(m.sideT)+' mm. MOVENTO takes 16 mm maximum.');
     return out;
   }
 
@@ -526,9 +533,9 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
     $('s3title').textContent = TXT[mode].title;
     $('rNote').innerHTML = 'Runner length <code>'+m.rlen+' mm</code>. Needs a cabinet at least <code>'+m.mind+' mm</code> deep.';
     $('boxbody').innerHTML = [
-      ['Inside drawer width', fmt(m.lw-42)+' mm'],
+      ['Box OUTSIDE width', fmt(m.lw-42+2*m.sideT)+' mm'],
+      ['Box inside width', fmt(m.lw-42)+' mm'],
       ['Box length', fmt(m.nl-10)+' mm'],
-      ['Max side thickness', '16 mm'],
       ['Rear hook bores', '\u00d86 \u00d7 10 deep'],
       ['Min rear notch', '50 mm']
     ].map(function(r){ return '<tr><td>'+r[0]+'</td><td style="text-align:right;color:#1B4FD8;font-weight:600">'+r[1]+'</td></tr>'; }).join('');
@@ -547,7 +554,7 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
       renderDrawers(); sync(); compute();
     }); });
 
-  ['panelH','panelD','lw','floor','shelfT','anchor','setback','gap','botOff'].forEach(function(id){
+  ['panelH','panelD','lw','sideT','floor','shelfT','anchor','setback','gap','botOff'].forEach(function(id){
     $(id).addEventListener('input', compute); });
 
   renderDrawers();
