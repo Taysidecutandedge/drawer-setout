@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Drawer Set-Out — Blum MOVENTO</title>
+<title>Drawer Set-Out — Häfele Matrix Runner UM A</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -158,34 +158,35 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
 <div class="masthead">
   <div>
     <h1>Drawer Set-Out</h1>
-    <p>Blum MOVENTO &middot; base-fixing runner</p>
+    <p>Häfele Matrix Runner UM A · 19 mm sides</p>
   </div>
-  <a class="swap" href="index.html">Häfele UM A &rarr;</a>
+  <a class="swap" href="movento.html">Blum Movento &rarr;</a>
 </div>
 
-<div class="status go" id="status">Ready to set out<small>&mdash;</small></div>
+<div class="status go" id="status">Ready to drill<small>—</small></div>
 
 <div class="page">
 <div class="colA">
 
+  <!-- 1 CABINET -->
   <section class="card">
     <h2><span class="step">1</span> Cabinet</h2>
     <div class="body">
       <p class="lab">Side panel height</p>
       <div class="pills" id="hPills"></div>
       <div class="stepper" style="margin-top:8px">
-        <button type="button" data-step="-10" data-for="panelH">&minus;</button>
-        <input type="number" id="panelH" value="720" inputmode="decimal" aria-label="Side panel height">
+        <button type="button" data-step="-10" data-for="panelH">−</button>
+        <input type="number" id="panelH" value="720" inputmode="decimal" aria-label="Side panel height in mm">
         <button type="button" data-step="10" data-for="panelH">+</button>
       </div>
 
       <p class="lab">Inside floor, above panel bottom edge</p>
       <div class="stepper">
-        <button type="button" data-step="-1" data-for="floor">&minus;</button>
-        <input type="number" id="floor" value="19" inputmode="decimal" aria-label="Carcase base above panel bottom edge">
+        <button type="button" data-step="-1" data-for="floor">−</button>
+        <input type="number" id="floor" value="19" inputmode="decimal" aria-label="Height of the carcase bottom panel above the side panel bottom edge">
         <button type="button" data-step="1" data-for="floor">+</button>
       </div>
-      <p class="note">Top face of the carcase base. <code>19</code> if the base sits between the sides, <code>0</code> if the sides sit on it.</p>
+      <p class="note">Top face of the carcase bottom. Put <code>19</code> if the bottom sits between the sides, <code>0</code> if the sides sit on top of it.</p>
 
       <p class="lab">Clear internal width</p>
       <div class="stepper">
@@ -198,50 +199,48 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
       <p class="lab">Side panel depth</p>
       <div class="pills" id="dPills"></div>
       <div class="stepper" style="margin-top:8px">
-        <button type="button" data-step="-10" data-for="panelD">&minus;</button>
-        <input type="number" id="panelD" value="560" inputmode="decimal" aria-label="Side panel depth">
+        <button type="button" data-step="-10" data-for="panelD">−</button>
+        <input type="number" id="panelD" value="560" inputmode="decimal" aria-label="Side panel depth in mm">
         <button type="button" data-step="10" data-for="panelD">+</button>
       </div>
     </div>
   </section>
 
+  <!-- 2 RUNNER -->
   <section class="card">
-    <h2><span class="step">2</span> Runner length NL</h2>
+    <h2><span class="step">2</span> Runner length</h2>
     <div class="body">
       <div class="pills" id="rPills"></div>
       <p class="note" id="rNote"></p>
     </div>
   </section>
 
+  <!-- 3 DRAWERS -->
   <section class="card">
     <h2><span class="step">3</span> <span id="s3title">Drawer fronts</span></h2>
     <div class="body">
-      <p class="lab">Upper runners mount on</p>
-      <div class="pills" id="uPills">
-        <button class="pill wide" type="button" data-mount="shelf" aria-pressed="true">Fixed shelf</button>
-        <button class="pill wide" type="button" data-mount="profile" aria-pressed="false">Cabinet profile</button>
-      </div>
-
       <p class="lab">Set out from</p>
       <div class="pills" id="mPills">
         <button class="pill wide" type="button" data-mode="front" aria-pressed="true">Fronts</button>
         <button class="pill wide" type="button" data-mode="box" aria-pressed="false">Boxes</button>
       </div>
       <p class="note" id="mNote"></p>
-
       <p class="lab">How many</p>
       <div class="pills" id="nPills"></div>
       <div id="drawers" style="margin-top:14px"></div>
       <div class="leftover go" id="leftover"><span>Left over</span><span id="leftoverV">0 mm</span></div>
-      <div class="btnrow"><button class="btn ghost" type="button" id="fitBtn">Make them fit</button></div>
+      <div class="btnrow">
+        <button class="btn ghost" type="button" id="fitBtn">Make them fit</button>
+      </div>
     </div>
   </section>
 
 </div>
 <div class="colB">
 
+  <!-- 4 ANSWER -->
   <section class="card">
-    <h2><span class="step">4</span> Runner surfaces<em id="fromNote"></em></h2>
+    <h2><span class="step">4</span> Mark out<em id="fromNote"></em></h2>
     <div class="body">
       <p class="lab">Measure from</p>
       <div class="pills noprint" id="fPills">
@@ -250,75 +249,90 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
       </div>
       <div id="errs" style="margin-top:12px"></div>
       <div class="prove" id="prove">
-        <p>These are the heights of the <b>top face</b> each runner screws down onto. Drawer 1 needs nothing built &mdash; it sits on the carcase base.</p>
+        <p>Bottom drawer sits <b id="proveV">46 mm</b> above the inside floor. Each drawer after it is the one below plus its own height plus the gap. <b>Test fit the bottom drawer before drilling the rest of a kitchen.</b></p>
+        <label><input type="checkbox" id="proveChk"> Checked on a test drawer — stop showing this</label>
       </div>
       <ul class="marks" id="marks"></ul>
       <div class="callout">
-        <p>Set the runner back <b id="setbackV">3</b> mm from the front edge of the side panel, and bore <b>&#216;6 &times; 10</b> hook holes in the drawer back &mdash; 7 mm up, 11 mm in, both sides.</p>
+        <p>Square each height right across both side panels, then drill <b>5 mm</b> holes on every line at <b id="depthList">37 · 165 · 261</b> mm back from the <b>front edge</b>.</p>
       </div>
       <div class="btnrow noprint"><button class="btn" type="button" onclick="window.print()">Print this</button></div>
     </div>
   </section>
 
+  <!-- DRAWING -->
   <section class="card">
     <h2>Side panel<em id="scaleNote"></em></h2>
-    <div class="body"><svg class="dwg" id="dwg" viewBox="0 0 1000 620" role="img" aria-label="Scaled drawing of the side panel showing each runner mounting surface"></svg></div>
+    <div class="body"><svg class="dwg" id="dwg" viewBox="0 0 1000 620" role="img" aria-label="Scaled drawing of the side panel showing every drill position"></svg></div>
   </section>
 
+  <!-- ADVANCED -->
   <section class="card">
-    <details>
-      <summary>Shelf thickness <span class="val" id="shelfVal">18 mm</span></summary>
+    <details id="calibDet">
+      <summary>Bottom drawer position <span class="val" id="offVal">46 mm</span></summary>
       <div class="body">
-        <div class="stepper">
-          <button type="button" data-step="-1" data-for="shelfT">&minus;</button>
-          <input type="number" id="shelfT" value="18" inputmode="decimal" aria-label="Shelf thickness">
-          <button type="button" data-step="1" data-for="shelfT">+</button>
+        <div class="callout" style="margin-top:0">
+          <p>Häfele's <b>≥46</b> — the top row of holes for the <b>bottom drawer</b>, measured up from the inside floor of the carcase. Every drawer above it follows on from the heights you enter, so this is the only figure that fixes the stack.</p>
         </div>
-        <p class="note">Only used on Fixed shelf. The list gives the shelf underside as well as the top face.</p>
+        <svg id="calibDia" viewBox="0 0 300 120" style="width:100%;max-width:300px;margin:12px 0 4px" aria-hidden="true">
+          <rect x="28" y="10" width="15" height="100" fill="#DCDFD3" stroke="#1C1F1A" stroke-width="1.5"/>
+          <rect x="43" y="96" width="215" height="14" fill="#DCDFD3" stroke="#1C1F1A" stroke-width="1.5"/>
+          <rect x="60" y="40" width="185" height="42" fill="#fff" stroke="#C9CCC0" stroke-width="1.5"/>
+          <circle cx="150" cy="54" r="6" fill="#fff" stroke="#1B4FD8" stroke-width="2"/>
+          <circle cx="150" cy="54" r="1.8" fill="#1B4FD8"/>
+          <line x1="80" y1="96" x2="80" y2="54" stroke="#1B4FD8" stroke-width="1.5"/>
+          <line x1="72" y1="96" x2="150" y2="96" stroke="#1B4FD8" stroke-width="1.2"/>
+          <line x1="88" y1="54" x2="150" y2="54" stroke="#1B4FD8" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="92" y="78" font-family="IBM Plex Mono,monospace" font-size="15" font-weight="700" fill="#1B4FD8">46</text>
+          <text x="150" y="118" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="12" letter-spacing="1.2" fill="#5C6157">TOP OF THE BASE</text>
+        </svg>
+        <p class="lab" id="offLab" style="margin-top:12px">Bottom drawer holes, above the inside floor</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="offset">−</button>
+          <input type="number" id="offset" value="46" step="0.5" inputmode="decimal" aria-label="Lower hole height above the front bottom edge">
+          <button type="button" data-step="1" data-for="offset">+</button>
+        </div>
+        <p class="lab" style="margin-top:18px">Rows of holes</p>
+        <div class="pills" id="rowPills">
+          <button class="pill wide" type="button" data-rows="1" aria-pressed="true">Top row only</button>
+          <button class="pill wide" type="button" data-rows="2" aria-pressed="false">Both rows</button>
+        </div>
+        <p class="note">Both rows puts a second hole <code>32 mm</code> below the top one, as per the Häfele pattern.</p>
       </div>
     </details>
 
     <details>
-      <summary>Drawer box sizes</summary>
+      <summary>Full schedule &amp; drawer box sizes</summary>
       <div class="body">
-        <p class="lab" style="margin-top:14px">Drawer side thickness</p>
-        <div class="stepper">
-          <button type="button" data-step="-1" data-for="sideT">&minus;</button>
-          <input type="number" id="sideT" value="16" inputmode="decimal" aria-label="Drawer side thickness">
-          <button type="button" data-step="1" data-for="sideT">+</button>
+        <table>
+          <thead><tr><th>Drawer</th><th>Front</th><th>Front btm</th><th>Hole heights</th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+        <p class="lab" style="margin-top:16px">Drawer box</p>
+        <div class="drow"><span class="tag">Side thk</span>
+          <div class="stepper">
+            <button type="button" data-step="-1" data-for="sideT">&minus;</button>
+            <input type="number" id="sideT" value="19" inputmode="decimal" aria-label="Drawer side thickness">
+            <button type="button" data-step="1" data-for="sideT">+</button>
+          </div>
         </div>
-        <table style="margin-top:12px"><tbody id="boxbody"></tbody></table>
-        <p class="note">Blum fix the <b>inside</b> width at clear width minus 42, so the outside moves with the side thickness. 16 mm is the maximum.</p>
+        <table style="margin-top:8px"><tbody id="boxbody"></tbody></table>
+        <p class="note">Häfele fix the <b>outside</b> width, so thinner sides give you more inside, not a wider box. 19 mm is the maximum.</p>
       </div>
     </details>
 
     <details>
-      <summary>Gaps and setback</summary>
+      <summary>Gap between <span id="gapWhat">fronts</span> <span class="val" id="gapVal">3 mm</span></summary>
       <div class="body">
-        <p class="lab" id="gapLab">Gap between fronts</p>
         <div class="stepper">
-          <button type="button" data-step="-0.5" data-for="gap">&minus;</button>
-          <input type="number" id="gap" value="3" step="0.5" inputmode="decimal" aria-label="Gap">
+          <button type="button" data-step="-0.5" data-for="gap">−</button>
+          <input type="number" id="gap" value="3" step="0.5" inputmode="decimal" aria-label="Gap between drawer fronts">
           <button type="button" data-step="0.5" data-for="gap">+</button>
         </div>
-        <p class="lab" style="margin-top:16px">Bottom runner above the inside floor</p>
+        <p class="lab" style="margin-top:16px" id="botLab">Gap under the bottom front</p>
         <div class="stepper">
-          <button type="button" data-step="-1" data-for="anchor">&minus;</button>
-          <input type="number" id="anchor" value="0" inputmode="decimal" aria-label="Bottom runner above the floor">
-          <button type="button" data-step="1" data-for="anchor">+</button>
-        </div>
-        <p class="note">MOVENTO sits straight on the carcase base, so normally <code>0</code>.</p>
-        <p class="lab" style="margin-top:16px">Runner setback from the front edge</p>
-        <div class="stepper">
-          <button type="button" data-step="-0.5" data-for="setback">&minus;</button>
-          <input type="number" id="setback" value="3" step="0.5" inputmode="decimal" aria-label="Runner setback">
-          <button type="button" data-step="0.5" data-for="setback">+</button>
-        </div>
-        <p class="note">3 mm suits overlay fronts. Inset needs more &mdash; see Blum's setback table.</p>
-        <p class="lab" style="margin-top:16px">Bottom start (fit check only)</p>
-        <div class="stepper">
-          <button type="button" data-step="-1" data-for="botOff">&minus;</button>
-          <input type="number" id="botOff" value="0" inputmode="decimal" aria-label="Bottom start">
+          <button type="button" data-step="-1" data-for="botOff">−</button>
+          <input type="number" id="botOff" value="0" inputmode="decimal" aria-label="Height of the lowest front above the panel bottom edge">
           <button type="button" data-step="1" data-for="botOff">+</button>
         </div>
       </div>
@@ -359,15 +373,10 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
           <button type="button" data-step="1" data-for="groove">+</button>
         </div>
         <p class="lab">Box material</p>
-        <input class="txt" type="text" id="matS" value="16mm Birch Ply" aria-label="Box material">
+        <input class="txt" type="text" id="matS" value="19mm Birch Ply" aria-label="Box material">
         <p class="lab">Base material</p>
         <input class="txt" type="text" id="matB" value="6mm Birch Ply" aria-label="Base material">
-        <p class="lab">Shelf depth</p>
-        <div class="stepper">
-          <button type="button" data-step="-10" data-for="shelfD">&minus;</button>
-          <input type="number" id="shelfD" value="560" inputmode="decimal" aria-label="Shelf depth">
-          <button type="button" data-step="10" data-for="shelfD">+</button>
-        </div>
+        
       </div>
     </details>
   </section>
@@ -378,75 +387,136 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
 <script>
 (function(){
   "use strict";
-  var NLS = [270,300,350,400,450,500,550,600,650,700,750];
-  var nl = 450, measure = 'bottom', mode = 'front', mount = 'shelf';
-  var S = { front:{ list:[140,283,283], gap:3, botOff:0 },
-            box:  { list:[90,180,180],  gap:50, botOff:46 } };
-  var TXT = { front:{ title:'Drawer fronts', tag:'Front', gapLab:'Gap between fronts',
-                      note:'Front heights set the spacing from one runner surface to the next. They have to fill the panel.' },
-              box:  { title:'Drawer boxes',  tag:'Box',   gapLab:'Gap between boxes',
-                      note:'Box heights set the spacing from one runner surface to the next.' } };
+
+  var RUNNERS = {
+    300:{d:[37,165,261], min:318}, 350:{d:[37,165,261], min:368},
+    400:{d:[37,165,261], min:418}, 450:{d:[37,165,261], min:468},
+    500:{d:[37,165,325], min:518}, 550:{d:[37,165,261,357], min:568}
+  };
+  var PITCH = 32;
+
+  var runner  = 450;
+  var measure = 'bottom';
+  var rows    = 1;
+  var mode    = 'front';
+
+  // each datum keeps its own sizes, gaps and calibration figure
+  var anchor = 46;   // bottom drawer's holes, above the inside floor
+  var S = {
+    front: { list:[140,283,283], gap:3,  botOff:0 },
+    box:   { list:[90,180,180],  gap:50, botOff:46 }
+  };
+  var TXT = {
+    front: {
+      title:'Drawer fronts', tag:'Front', gapWhat:'fronts',
+      botLab:'Gap under the bottom front',
+      note:'Front heights have to fill the panel. The tool works the runner heights back from them.',
+      note2:'Front heights set the spacing between one runner and the next. They have to fill the panel.'
+    },
+    box: {
+      title:'Drawer boxes', tag:'Box', gapWhat:'boxes',
+      botLab:'Bottom box sits above panel bottom',
+      note:'Box sizes drive the runner heights. Fronts get hung on after, so they don’t come into it.',
+      note2:'Box heights set the spacing between one runner and the next.'
+    }
+  };
 
   var $ = function(id){ return document.getElementById(id); };
   var val = function(id, fb){ var v = parseFloat($(id).value); return isFinite(v) ? v : fb; };
   var fmt = function(v){ return (Math.round(v*10)/10).toString(); };
 
+  /* ---------- pill groups ---------- */
   function pills(host, items, get, set){
     host.innerHTML = items.map(function(it){
       return '<button class="pill wide" type="button" data-v="'+it.v+'" aria-pressed="false">'+it.t+'</button>';
     }).join('');
-    host._get = get;
     host.querySelectorAll('.pill').forEach(function(b){
       b.addEventListener('click', function(){ set(parseFloat(b.dataset.v)); sync(); compute(); });
     });
+    host.dataset.get = '';
+    host._get = get;
   }
   function markPills(host){
-    if(!host._get) return;
+    if (!host._get) return;
     var cur = host._get();
     host.querySelectorAll('.pill').forEach(function(b){
-      b.setAttribute('aria-pressed', parseFloat(b.dataset.v)===cur ? 'true':'false');
+      b.setAttribute('aria-pressed', parseFloat(b.dataset.v) === cur ? 'true' : 'false');
     });
   }
 
-  pills($('hPills'), [720,760,1970,2150].map(function(v){return {v:v,t:String(v)};}),
+  pills($('hPills'), [{v:720,t:'720'},{v:760,t:'760'},{v:1970,t:'1970'},{v:2150,t:'2150'}],
     function(){ return val('panelH',0); }, function(v){ $('panelH').value = v; });
-  pills($('dPills'), [500,560,600,650].map(function(v){return {v:v,t:String(v)};}),
+
+  pills($('dPills'), [{v:500,t:'500'},{v:560,t:'560'},{v:600,t:'600'},{v:650,t:'650'}],
     function(){ return val('panelD',0); }, function(v){ $('panelD').value = v; });
-  pills($('rPills'), NLS.map(function(v){return {v:v,t:String(v)};}),
-    function(){ return nl; }, function(v){ nl = v; });
-  pills($('nPills'), [1,2,3,4,5].map(function(v){return {v:v,t:String(v)};}),
+
+  pills($('rPills'), [300,350,400,450,500,550].map(function(n){ return {v:n,t:String(n)}; }),
+    function(){ return runner; }, function(v){ runner = v; });
+
+  pills($('nPills'), [1,2,3,4,5].map(function(n){ return {v:n,t:String(n)}; }),
     function(){ return S[mode].list.length; }, function(v){ setCount(v); });
 
   function setCount(n){
     var st = S[mode], m = model();
     var avail = m.panelH - st.botOff - st.gap*(n-1);
-    while(st.list.length > n) st.list.pop();
-    while(st.list.length < n) st.list.push(0);
-    var each = Math.round(avail/n);
+    while (st.list.length > n) st.list.pop();
+    while (st.list.length < n) st.list.push(0);
+    var each = Math.round(avail / n);
     st.list = st.list.map(function(){ return each; });
     st.list[0] = Math.round(avail - each*(n-1));
     renderDrawers();
     if (typeof renderBoxHeights === "function"){ renderBoxHeights(); cutlist(); }
   }
 
-  document.addEventListener('click', function(e){
-    var b = e.target.closest('[data-step]');
-    if(!b) return;
-    var inp = $(b.dataset.for) || document.querySelector('[data-fid="'+b.dataset.for+'"]');
-    if(!inp) return;
-    var v = parseFloat(inp.value); if(!isFinite(v)) v = 0;
-    inp.value = Math.round((v + parseFloat(b.dataset.step))*10)/10;
-    inp.dispatchEvent(new Event('input',{bubbles:true}));
+  $('fPills').querySelectorAll('.pill').forEach(function(b){
+    b.addEventListener('click', function(){ measure = b.dataset.from; sync(); compute(); });
   });
 
+  $('rowPills').querySelectorAll('.pill').forEach(function(b){
+    b.addEventListener('click', function(){ rows = parseInt(b.dataset.rows,10); sync(); compute(); });
+  });
+
+  $('mPills').querySelectorAll('.pill').forEach(function(b){
+    b.addEventListener('click', function(){
+      mode = b.dataset.mode;
+      loadMode(); renderDrawers(); sync(); compute();
+    });
+  });
+
+  function loadMode(){
+    var st = S[mode], t = TXT[mode];
+    $('gap').value = st.gap;
+    $('botOff').value = st.botOff;
+    $('s3title').textContent = t.title;
+    $('gapWhat').textContent = t.gapWhat;
+    $('botLab').textContent = t.botLab;
+    $('mNote').textContent = t.note + '  ' + t.note2;
+  }
+
+  $('proveChk').addEventListener('change', function(){
+    $('prove').classList.toggle('done', $('proveChk').checked);
+  });
+
+  /* ---------- steppers ---------- */
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('[data-step]');
+    if (!b) return;
+    var inp = $(b.dataset.for) || document.querySelector('[data-fid="'+b.dataset.for+'"]');
+    if (!inp) return;
+    var v = parseFloat(inp.value); if (!isFinite(v)) v = 0;
+    inp.value = Math.round((v + parseFloat(b.dataset.step)) * 10) / 10;
+    inp.dispatchEvent(new Event('input', {bubbles:true}));
+  });
+
+  /* ---------- drawer rows ---------- */
   function renderDrawers(){
     var st = S[mode], tag = TXT[mode].tag;
-    $('drawers').innerHTML = st.list.map(function(h,i){
-      return '<div class="drow"><span class="tag">'+tag+' '+(i+1)+'</span>'+
-        '<div class="stepper">'+
-          '<button type="button" data-step="-5" data-for="dw'+i+'">&minus;</button>'+
-          '<input type="number" data-fid="dw'+i+'" data-i="'+i+'" value="'+h+'" inputmode="decimal" aria-label="'+tag+' '+(i+1)+' height">'+
-          '<button type="button" data-step="5" data-for="dw'+i+'">+</button>'+
+    $('drawers').innerHTML = st.list.map(function(h, i){
+      return '<div class="drow"><span class="tag">'+tag+' '+(i+1)+'</span>' +
+        '<div class="stepper">' +
+          '<button type="button" data-step="-5" data-for="dw'+i+'">−</button>' +
+          '<input type="number" data-fid="dw'+i+'" data-i="'+i+'" value="'+h+'" inputmode="decimal" aria-label="Height of '+tag.toLowerCase()+' '+(i+1)+'">' +
+          '<button type="button" data-step="5" data-for="dw'+i+'">+</button>' +
         '</div></div>';
     }).join('');
     $('drawers').querySelectorAll('input').forEach(function(inp){
@@ -461,27 +531,32 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
   $('fitBtn').addEventListener('click', function(){
     var m = model(), st = S[mode];
     var avail = m.panelH - st.botOff - st.gap*(st.list.length-1);
-    var tot = st.list.reduce(function(a,b){return a+b;},0) || 1;
-    var sc = st.list.map(function(h){ return Math.round(h/tot*avail); });
-    sc[sc.length-1] += avail - sc.reduce(function(a,b){return a+b;},0);
-    st.list = sc;
+    var tot = st.list.reduce(function(a,b){ return a+b; }, 0) || 1;
+    var scaled = st.list.map(function(h){ return Math.round(h/tot*avail); });
+    var diff = avail - scaled.reduce(function(a,b){ return a+b; }, 0);
+    scaled[scaled.length-1] += diff;
+    st.list = scaled;
     renderDrawers(); compute();
   });
 
+  /* ---------- model ---------- */
   function model(){
     var st = S[mode];
-    st.gap = val('gap', st.gap);
+    st.gap    = val('gap', st.gap);
     st.botOff = val('botOff', st.botOff);
-    var m = { panelH: val('panelH',720), panelD: val('panelD',560), lw: val('lw',500),
-              floor: val('floor',19), shelfT: val('shelfT',18), anchor: val('anchor',0), sideT: val('sideT',16),
-              setback: val('setback',3), gap: st.gap, botOff: st.botOff,
-              nl: nl, rlen: nl+11, mind: nl+20, rows: [] };
-    var y = st.botOff, surf = m.floor + m.anchor;
+    anchor    = val('offset', anchor);
+
+    var m = {
+      panelH: val('panelH',720), panelD: val('panelD',560), lw: val('lw',500), floor: val('floor',19), sideT: val('sideT',19),
+      off: anchor, botOff: st.botOff, gap: st.gap,
+      rl: runner, spec: RUNNERS[runner], rows: []
+    };
+    var y = m.botOff, hole = m.floor + anchor;
     st.list.forEach(function(h,i){
-      m.rows.push({ n:i+1, h:h, bottom:y, surf:surf,
-                    under: (i===0 || mount!=='shelf') ? null : surf - m.shelfT });
-      y += h + m.gap;
-      surf += h + m.gap;
+      m.rows.push({ n:i+1, h:h, bottom:y, top:hole,
+                    holes: rows === 2 ? [hole - PITCH, hole] : [hole] });
+      y    += h + m.gap;
+      hole += h + m.gap;
     });
     m.used = y - m.gap;
     m.left = m.panelH - m.used;
@@ -490,128 +565,168 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
 
   function problems(m){
     var out = [];
-    if (m.panelD < m.mind)
-      out.push('Panel is only '+fmt(m.panelD)+' mm deep. NL '+m.nl+' needs '+m.mind+' mm. Use a shorter runner or a deeper cabinet.');
+    if (m.panelD < m.spec.min)
+      out.push('Panel is only ' + fmt(m.panelD) + ' mm deep. A ' + m.rl + ' mm runner needs ' + m.spec.min + ' mm. Use a shorter runner or a deeper cabinet.');
+    var tag = TXT[mode].tag.toLowerCase();
     if (m.left < -0.5)
-      out.push(TXT[mode].title+' are '+fmt(-m.left)+' mm too tall for the panel. Tap "Make them fit".');
+      out.push(TXT[mode].title + ' are ' + fmt(-m.left) + ' mm too tall for the panel. Tap “Make them fit”.');
     m.rows.forEach(function(r){
-      if (r.surf > m.panelH - 20)
-        out.push('Drawer '+r.n+': runner surface at '+fmt(r.surf)+' mm leaves nothing above it.');
-      if (r.under !== null && r.under < m.floor)
-        out.push('Drawer '+r.n+': the shelf would sit inside the carcase base.');
-      if (r.h < 80)
-        out.push('Drawer '+r.n+' is only '+fmt(r.h)+' mm. Tight for MOVENTO - test fit one first.');
+      var lo = r.holes[0], hi = r.holes[r.holes.length-1];
+      if (lo < 8) out.push('Drawer ' + r.n + ': hole lands ' + fmt(lo) + ' mm off the bottom edge — too close to drill.');
+      else if (lo < m.floor) out.push('Drawer ' + r.n + ': hole at ' + fmt(lo) + ' mm is below the carcase bottom (' + fmt(m.floor) + ' mm). Raise the drawer or drop the floor.');
+      if (hi > m.panelH - 8) out.push('Drawer ' + r.n + ': hole runs off the top of the panel.');
+      if (r.h < 80) out.push('Drawer ' + r.n + ' ' + tag + ' is only ' + fmt(r.h) + ' mm. Under 80 mm gets tight — test fit one first.');
     });
-    if (m.sideT > 16) out.push('Drawer sides are '+fmt(m.sideT)+' mm. MOVENTO takes 16 mm maximum.');
+    if (m.sideT > 19) out.push('Drawer sides are ' + fmt(m.sideT) + ' mm. These runners take 19 mm maximum.');
+    if (mode === 'box' && m.rows.length > 1 && m.gap < 46)
+      out.push('Only ' + fmt(m.gap) + ' mm between boxes. The runner sits in that space — allow around 46 mm unless you know otherwise.');
+    for (var i=0; i<m.rows.length-1; i++){
+      var a = m.rows[i].holes[m.rows[i].holes.length-1];
+      var c = m.rows[i+1].holes[0] - a;
+      if (c < 20) out.push('Only ' + fmt(c) + ' mm between drawer ' + (i+1) + ' and drawer ' + (i+2) + ' holes.');
+    }
     return out;
   }
 
+  /* ---------- drawing ---------- */
   function draw(m){
-    var W=1000, PL=104, PR=30, PT=26, PB=64;
+    var W=1000, PL=104, PR=30, PT=26, PB=60;
     var s = (W-PL-PR)/Math.max(m.panelD,1), ph = m.panelH*s, H = ph+PT+PB;
-    var X = function(v){ return PL+v*s; }, Y = function(v){ return PT+ph-v*s; };
+    var X = function(v){ return PL + v*s; }, Y = function(v){ return PT + ph - v*s; };
     var g = ['<rect width="'+W+'" height="'+H+'" fill="#F8F9F4"/>'];
+
     g.push('<rect x="'+X(0)+'" y="'+Y(m.panelH)+'" width="'+(m.panelD*s)+'" height="'+ph+'" fill="#fff" stroke="#1C1F1A" stroke-width="1.6"/>');
     g.push('<line x1="'+X(0)+'" y1="'+Y(m.panelH)+'" x2="'+X(0)+'" y2="'+Y(0)+'" stroke="#1C1F1A" stroke-width="5"/>');
     g.push('<text x="'+(X(0)-8)+'" y="'+(Y(m.panelH)-9)+'" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="15" letter-spacing="1.5" fill="#5C6157">FRONT EDGE</text>');
 
+    m.rows.forEach(function(r){
+      var top = Math.min(r.bottom+r.h, m.panelH);
+      g.push('<rect x="'+X(0)+'" y="'+Y(top)+'" width="'+(m.panelD*s)+'" height="'+Math.max((top-r.bottom)*s,0)+'" fill="#1B4FD8" opacity="0.04"/>');
+      g.push('<line x1="'+X(0)+'" y1="'+Y(r.bottom)+'" x2="'+X(m.panelD)+'" y2="'+Y(r.bottom)+'" stroke="#C9CCC0" stroke-width="1" stroke-dasharray="7 5"/>');
+      g.push('<text x="'+(X(m.panelD)-7)+'" y="'+(Y(r.bottom+r.h/2)+5)+'" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="16" letter-spacing="1.3" fill="#A3A99B">DRAWER '+r.n+'</text>');
+    });
+
+    m.rows.forEach(function(r){
+      r.holes.forEach(function(h,k){
+        var lead = (k === r.holes.length-1);
+        g.push('<line x1="'+X(0)+'" y1="'+Y(h)+'" x2="'+X(m.panelD)+'" y2="'+Y(h)+'" stroke="#1B4FD8" stroke-width="0.9" opacity="'+(lead?0.4:0.24)+'"/>');
+        m.spec.d.forEach(function(dp){
+          if (dp > m.panelD) return;
+          g.push('<circle cx="'+X(dp)+'" cy="'+Y(h)+'" r="6.5" fill="#fff" stroke="#1B4FD8" stroke-width="2"/>');
+          g.push('<circle cx="'+X(dp)+'" cy="'+Y(h)+'" r="1.8" fill="#1B4FD8"/>');
+        });
+      });
+    });
+
     if (m.floor > 0){
       g.push('<rect x="'+X(0)+'" y="'+Y(m.floor)+'" width="'+(m.panelD*s)+'" height="'+(m.floor*s)+'" fill="#5C6157" opacity="0.13"/>');
       g.push('<line x1="'+X(0)+'" y1="'+Y(m.floor)+'" x2="'+X(m.panelD)+'" y2="'+Y(m.floor)+'" stroke="#5C6157" stroke-width="1.4"/>');
-      g.push('<text x="'+(X(m.panelD)-7)+'" y="'+(Y(m.floor)-7)+'" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="14" letter-spacing="1.3" fill="#5C6157">CARCASE BASE</text>');
+      g.push('<text x="'+(X(m.panelD)-7)+'" y="'+(Y(m.floor)-7)+'" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="14" letter-spacing="1.3" fill="#5C6157">CARCASE BOTTOM</text>');
     }
-
-    var back = Math.min(m.setback + m.rlen, m.panelD);
-    m.rows.forEach(function(r){
-      if (r.under !== null)
-        g.push('<rect x="'+X(0)+'" y="'+Y(r.surf)+'" width="'+(m.panelD*s)+'" height="'+(m.shelfT*s)+'" fill="#1B4FD8" opacity="0.10"/>');
-      g.push('<line x1="'+X(m.setback)+'" y1="'+Y(r.surf)+'" x2="'+X(back)+'" y2="'+Y(r.surf)+'" stroke="#1B4FD8" stroke-width="4"/>');
-      g.push('<line x1="'+X(back)+'" y1="'+Y(r.surf)+'" x2="'+X(m.panelD)+'" y2="'+Y(r.surf)+'" stroke="#1B4FD8" stroke-width="1" stroke-dasharray="5 5" opacity="0.5"/>');
-      g.push('<text x="'+(X(m.setback)+8)+'" y="'+(Y(r.surf)-8)+'" font-family="Barlow Condensed,sans-serif" font-size="15" letter-spacing="1.2" fill="#1B4FD8">DRAWER '+r.n+(r.n===1?' \u00b7 ON THE BASE':'')+'</text>');
-    });
-
-    g.push('<line x1="'+X(m.setback)+'" y1="'+Y(m.panelH)+'" x2="'+X(m.setback)+'" y2="'+(Y(0)+16)+'" stroke="#1B4FD8" stroke-width="0.9" stroke-dasharray="4 4"/>');
-    g.push('<text x="'+X(m.setback)+'" y="'+(Y(0)+34)+'" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="14" font-weight="700" fill="#1B4FD8">'+fmt(m.setback)+'</text>');
-    g.push('<text x="'+X(m.setback)+'" y="'+(Y(0)+52)+'" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-size="13" letter-spacing="1.2" fill="#5C6157">SETBACK</text>');
 
     var lx = PL-24;
     g.push('<line x1="'+lx+'" y1="'+Y(0)+'" x2="'+lx+'" y2="'+Y(m.panelH)+'" stroke="#5C6157" stroke-width="1"/>');
     m.rows.forEach(function(r){
-      var yy = Y(r.surf), shown = (measure==='top') ? m.panelH-r.surf : r.surf;
-      g.push('<line x1="'+(lx-4)+'" y1="'+yy+'" x2="'+X(0)+'" y2="'+yy+'" stroke="#5C6157" stroke-width="0.8" opacity="0.5"/>');
-      g.push('<text x="'+(lx-8)+'" y="'+(yy+4)+'" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="14" font-weight="700" fill="#1B4FD8">'+fmt(shown)+'</text>');
+      r.holes.forEach(function(h,k){
+        var lead = (k === r.holes.length-1);
+        var yy = Y(h), shown = (measure==='top') ? (m.panelH-h) : h;
+        g.push('<line x1="'+(lx-4)+'" y1="'+yy+'" x2="'+X(0)+'" y2="'+yy+'" stroke="#5C6157" stroke-width="0.8" opacity="0.5"/>');
+        g.push('<text x="'+(lx-8)+'" y="'+(yy+4)+'" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="14" font-weight="'+(lead?700:400)+'" fill="'+(lead?'#1B4FD8':'#5C6157')+'">'+fmt(shown)+'</text>');
+      });
     });
+
+    var by = Y(0)+28;
+    g.push('<line x1="'+X(0)+'" y1="'+by+'" x2="'+X(m.panelD)+'" y2="'+by+'" stroke="#5C6157" stroke-width="1"/>');
+    m.spec.d.forEach(function(dp){
+      if (dp > m.panelD) return;
+      g.push('<line x1="'+X(dp)+'" y1="'+Y(0)+'" x2="'+X(dp)+'" y2="'+(by+6)+'" stroke="#1B4FD8" stroke-width="0.8" stroke-dasharray="4 4"/>');
+      g.push('<text x="'+X(dp)+'" y="'+(by+23)+'" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="14" font-weight="700" fill="#1B4FD8">'+dp+'</text>');
+    });
+    g.push('<text x="'+X(0)+'" y="'+(by+42)+'" font-family="Barlow Condensed,sans-serif" font-size="14" letter-spacing="1.3" fill="#5C6157">DEPTH FROM FRONT EDGE</text>');
 
     var svg = $('dwg');
     svg.setAttribute('viewBox','0 0 '+W+' '+Math.round(H));
     svg.innerHTML = g.join('');
-    $('scaleNote').textContent = fmt(m.panelD)+' \u00d7 '+fmt(m.panelH)+' mm, to scale';
+    $('scaleNote').textContent = fmt(m.panelD)+' × '+fmt(m.panelH)+' mm, to scale';
   }
 
+  /* ---------- sync selected states ---------- */
   function sync(){
     ['hPills','dPills','rPills','nPills'].forEach(function(id){ markPills($(id)); });
     $('fPills').querySelectorAll('.pill').forEach(function(b){
-      b.setAttribute('aria-pressed', b.dataset.from===measure ? 'true':'false'); });
+      b.setAttribute('aria-pressed', b.dataset.from === measure ? 'true' : 'false');
+    });
+    $('rowPills').querySelectorAll('.pill').forEach(function(b){
+      b.setAttribute('aria-pressed', parseInt(b.dataset.rows,10) === rows ? 'true' : 'false');
+    });
     $('mPills').querySelectorAll('.pill').forEach(function(b){
-      b.setAttribute('aria-pressed', b.dataset.mode===mode ? 'true':'false'); });
-    $('uPills').querySelectorAll('.pill').forEach(function(b){
-      b.setAttribute('aria-pressed', b.dataset.mount===mount ? 'true':'false'); });
+      b.setAttribute('aria-pressed', b.dataset.mode === mode ? 'true' : 'false');
+    });
+    $('calibDia').style.display = (mode === 'box') ? 'none' : '';
   }
 
+  /* ---------- render ---------- */
   function compute(){
     var m = model(), probs = problems(m);
-    var n = m.rows.length - 1;
+
     var st = $('status');
-    st.className = 'status ' + (probs.length ? 'stop':'go');
-    st.innerHTML = probs.length ? 'Fix this first<small>'+probs[0]+'</small>'
-      : 'Ready to set out<small>'+(n===0 ? 'single drawer, straight on the base' : n+' '+(mount==='shelf'?(n===1?'shelf':'shelves'):(n===1?'profile':'profiles'))+' to fit')+' \u00b7 NL '+m.nl+'</small>';
+    st.className = 'status ' + (probs.length ? 'stop' : 'go');
+    st.innerHTML = probs.length
+      ? 'Fix this first<small>' + probs[0] + '</small>'
+      : 'Ready to drill<small>' + (m.rows.length*m.spec.d.length*rows) + ' holes per side panel · ' + m.rl + ' mm runners</small>';
+
     $('errs').innerHTML = probs.map(function(p){ return '<div class="err">'+p+'</div>'; }).join('');
 
+    // left over
     var lo = $('leftover');
-    lo.className = 'leftover ' + (m.left < -0.5 ? 'stop':'go');
-    $('leftoverV').textContent = fmt(m.left)+' mm';
+    lo.className = 'leftover ' + (m.left < -0.5 ? 'stop' : 'go');
+    $('leftoverV').textContent = fmt(m.left) + ' mm';
 
-    $('marks').innerHTML = m.rows.map(function(r){
-      var shown = (measure==='top') ? m.panelH-r.surf : r.surf;
-      var who;
-      if (r.n === 1) who = 'Drawer 1 \u00b7 carcase base';
-      else if (r.under !== null) who = 'Drawer '+r.n+' \u00b7 shelf top (under '+fmt(measure==='top'? m.panelH-r.under : r.under)+')';
-      else who = 'Drawer '+r.n+' \u00b7 profile top';
-      return '<li><span class="mm">'+fmt(shown)+'<sub>mm</sub></span><span class="who">'+who+'</span><span class="tick"></span></li>';
+    // marking list
+    var list = [];
+    m.rows.forEach(function(r){
+      r.holes.forEach(function(h,k){
+        var tag = (r.holes.length === 1) ? 'Drawer '+r.n
+                : (k === r.holes.length-1 ? 'Drawer '+r.n+' · top' : 'Drawer '+r.n+' · lower');
+        list.push({ h:h, who:tag });
+      });
+    });
+    list.forEach(function(x){ x.shown = (measure==='top') ? m.panelH - x.h : x.h; });
+    list.sort(function(a,b){ return a.shown - b.shown; });
+    $('marks').innerHTML = list.map(function(x){
+      return '<li><span class="mm">'+fmt(x.shown)+'<sub>mm</sub></span><span class="who">'+x.who+'</span><span class="tick"></span></li>';
+    }).join('');
+    $('fromNote').textContent = 'from the ' + measure + ' edge';
+
+    $('depthList').textContent = m.spec.d.join(' · ');
+    $('rNote').innerHTML = 'Needs at least <code>'+m.spec.min+' mm</code> of cabinet depth. Holes go at <code>'+m.spec.d.join(' · ')+' mm</code> from the front edge.';
+    $('offVal').textContent = fmt(m.off) + ' mm';
+    $('proveV').textContent = fmt(m.off) + ' mm';
+    $('gapVal').textContent = fmt(m.gap) + ' mm';
+
+    $('tbody').innerHTML = m.rows.map(function(r){
+      var hs = r.holes.map(fmt).join(' · ');
+      return '<tr><td>'+r.n+'</td><td>'+fmt(r.h)+'</td><td>'+fmt(r.bottom)+'</td><td>'+hs+'</td></tr>';
     }).join('');
 
-    $('fromNote').textContent = 'from the '+measure+' edge';
-    $('setbackV').textContent = fmt(m.setback);
-    $('shelfVal').textContent = fmt(m.shelfT)+' mm';
-    $('gapLab').textContent = TXT[mode].gapLab;
-    $('mNote').textContent = TXT[mode].note;
-    $('s3title').textContent = TXT[mode].title;
-    $('rNote').innerHTML = 'Runner length <code>'+m.rlen+' mm</code>. Needs a cabinet at least <code>'+m.mind+' mm</code> deep.';
+    var t = m.sideT, outw = m.lw - 11;
     $('boxbody').innerHTML = [
-      ['Box OUTSIDE width', fmt(m.lw-42+2*m.sideT)+' mm'],
-      ['Box inside width', fmt(m.lw-42)+' mm'],
-      ['Box length', fmt(m.nl-10)+' mm'],
-      ['Rear hook bores', '\u00d86 \u00d7 10 deep'],
-      ['Min rear notch', '50 mm']
-    ].map(function(r){ return '<tr><td>'+r[0]+'</td><td style="text-align:right;color:#1B4FD8;font-weight:600">'+r[1]+'</td></tr>'; }).join('');
+      ['Box OUTSIDE width', fmt(outw)],
+      ['Box inside width',  fmt(outw - 2*t)],
+      ['Base panel width',  fmt(outw - 2*t)],
+      ['Box depth',         fmt(m.rl)]
+    ].map(function(r){ return '<tr><td>'+r[0]+'</td><td>'+r[1]+' mm</td></tr>'; }).join('');
 
-    draw(m); sync(); cutlist();
+    draw(m);
+    sync();
+    cutlist();
   }
 
-  $('fPills').querySelectorAll('.pill').forEach(function(b){
-    b.addEventListener('click', function(){ measure = b.dataset.from; sync(); compute(); }); });
-  $('uPills').querySelectorAll('.pill').forEach(function(b){
-    b.addEventListener('click', function(){ mount = b.dataset.mount; sync(); compute(); }); });
-  $('mPills').querySelectorAll('.pill').forEach(function(b){
-    b.addEventListener('click', function(){
-      mode = b.dataset.mode;
-      $('gap').value = S[mode].gap; $('botOff').value = S[mode].botOff;
-      renderDrawers(); sync(); compute();
-    }); });
+  ['panelH','panelD','lw','sideT','floor','offset','botOff','gap'].forEach(function(id){
+    $(id).addEventListener('input', compute);
+  });
 
-  ['panelH','panelD','lw','sideT','floor','shelfT','anchor','setback','gap','botOff'].forEach(function(id){
-    $(id).addEventListener('input', compute); });
-
+  loadMode();
   renderDrawers();
   compute();
 
@@ -639,7 +754,7 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
 
   function parts(){
     if (!boxH) return [];   // compute() can fire before this block initialises
-    var m = model(), g = val('groove',6), t = m.sideT, OW = (m.lw-42+2*m.sideT), IW = (m.lw-42), D = (m.nl-10);
+    var m = model(), g = val('groove',6), t = m.sideT, OW = m.lw-11, IW = (m.lw-11-2*m.sideT), D = m.rl;
     var ms = $('matS').value, mb = $('matB').value, rows = [];
     S[mode].list.forEach(function(x,i){
       var h = boxH[i];
@@ -649,12 +764,7 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
       rows.push([ basefit==='under' ? D : D-2*t+2*g,
                   basefit==='under' ? OW : IW+2*g, 1, mb, 'D'+(i+1)+' Base' ]);
     });
-    if (mount==='shelf'){
-      for (var k=1; k<S[mode].list.length; k++){
-        if (!boxH[k]) continue;
-        rows.push([ val('shelfD',560), m.lw, 1, ms, 'Shelf under drawer '+(k+1) ]);
-      }
-    }
+    
     return rows;
   }
 
@@ -681,7 +791,7 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
       cutlist();
     });
   });
-  ['groove','matS','matB','shelfD'].forEach(function(id){
+  ['groove','matS','matB'].forEach(function(id){
     $(id).addEventListener('input', cutlist); });
 
   $('copyBtn').addEventListener('click', function(){
