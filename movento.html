@@ -195,6 +195,14 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
       </div>
       <p class="note">Between the two side panels. This drives the drawer box width.</p>
 
+      <p class="lab">Inside ceiling, below panel top edge</p>
+      <div class="stepper">
+        <button type="button" data-step="-1" data-for="ceil">&minus;</button>
+        <input type="number" id="ceil" value="0" inputmode="decimal" aria-label="Inside ceiling below panel top edge">
+        <button type="button" data-step="1" data-for="ceil">+</button>
+      </div>
+      <p class="note">Underside of a top panel or rail. <code>0</code> if the drawers run to the top of the side panel.</p>
+
       <p class="lab">Side panel depth</p>
       <div class="pills" id="dPills"></div>
       <div class="stepper" style="margin-top:8px">
@@ -474,7 +482,7 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
     st.botOff = val('botOff', st.botOff);
     var m = { panelH: val('panelH',720), panelD: val('panelD',560), lw: val('lw',500),
               floor: val('floor',19), shelfT: val('shelfT',18), anchor: val('anchor',0), sideT: val('sideT',16),
-              setback: val('setback',3), gap: st.gap, botOff: st.botOff,
+              setback: val('setback',3), gap: st.gap, botOff: st.botOff, ceilOff: val('ceil',0),
               nl: nl, rlen: nl+11, mind: nl+20, rows: [] };
     var y = st.botOff, surf = m.floor + m.anchor;
     st.list.forEach(function(h,i){
@@ -482,6 +490,11 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
                     under: (i===0 || mount!=='shelf') ? null : surf - m.shelfT });
       y += h + m.gap;
       surf += h + m.gap;
+    });
+    m.rows.forEach(function(r,i){
+      var nxt = m.rows[i+1];
+      var ceiling = nxt ? (nxt.under !== null ? nxt.under : nxt.surf) : m.panelH - m.ceilOff;
+      r.maxBox = ceiling - r.surf - 23;   // Blum: opening minus 23
     });
     m.used = y - m.gap;
     m.left = m.panelH - m.used;
@@ -503,6 +516,10 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
         out.push('Drawer '+r.n+' is only '+fmt(r.h)+' mm. Tight for MOVENTO - test fit one first.');
     });
     if (m.sideT > 16) out.push('Drawer sides are '+fmt(m.sideT)+' mm. MOVENTO takes 16 mm maximum.');
+    if (typeof boxH !== 'undefined' && boxH) m.rows.forEach(function(r,i){
+      if (boxH[i] && boxH[i] > r.maxBox)
+        out.push('Box '+r.n+' is '+fmt(boxH[i])+' mm but only '+fmt(r.maxBox)+' mm fits that opening.');
+    });
     return out;
   }
 
@@ -575,7 +592,7 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
       var shown = (measure==='top') ? m.panelH-r.surf : r.surf;
       var who;
       if (r.n === 1) who = 'Drawer 1 \u00b7 carcase base';
-      else if (r.under !== null) who = 'Drawer '+r.n+' \u00b7 shelf top (under '+fmt(measure==='top'? m.panelH-r.under : r.under)+')';
+      else if (r.under !== null) who = 'Drawer '+r.n+' \u00b7 shelf top \u00b7 pins at '+fmt(measure==='top'? m.panelH-r.under : r.under);
       else who = 'Drawer '+r.n+' \u00b7 profile top';
       return '<li><span class="mm">'+fmt(shown)+'<sub>mm</sub></span><span class="who">'+who+'</span><span class="tick"></span></li>';
     }).join('');
@@ -609,8 +626,8 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
       renderDrawers(); sync(); compute();
     }); });
 
-  ['panelH','panelD','lw','sideT','floor','shelfT','anchor','setback','gap','botOff'].forEach(function(id){
-    $(id).addEventListener('input', compute); });
+  ['panelH','panelD','lw','sideT','floor','ceil','shelfT','anchor','setback','gap','botOff'].forEach(function(id){
+    $(id).addEventListener('input', function(){ compute(); if (typeof renderBoxHeights==='function') renderBoxHeights(); }); });
 
   renderDrawers();
   compute();
@@ -619,9 +636,10 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
   var constr = 'sides', basefit = 'under';
 
   function renderBoxHeights(){
-    var n = S[mode].list.length;
+    var n = S[mode].list.length, m0 = model();
     $('boxHeights').innerHTML = boxH.slice(0,n).map(function(h,i){
-      return '<div class="drow"><span class="tag">Box '+(i+1)+'</span>'+
+      var mx = (m0.rows[i] ? fmt(m0.rows[i].maxBox) : '?');
+      return '<div class="drow"><span class="tag">Box '+(i+1)+'<br><span style="font-family:var(--mono);font-size:11px;color:#1B4FD8">max '+mx+'</span></span>'+
         '<div class="stepper">'+
           '<button type="button" data-step="-5" data-for="bh'+i+'">&minus;</button>'+
           '<input type="number" data-bh="'+i+'" data-fid="bh'+i+'" value="'+h+'" inputmode="decimal" aria-label="Box '+(i+1)+' height">'+
@@ -632,7 +650,7 @@ td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
       inp.addEventListener('input', function(){
         var v = parseFloat(inp.value);
         boxH[+inp.dataset.bh] = isFinite(v) ? v : 0;
-        cutlist();
+        compute();
       });
     });
   }
