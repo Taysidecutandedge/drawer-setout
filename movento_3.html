@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drawer Set-Out — Blum MOVENTO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E4E6DE; --card:#F8F9F4; --ink:#1C1F1A; --ink2:#5C6157;
+  --rule:#C9CCC0; --rule2:#DCDFD3;
+  --chalk:#1B4FD8; --chalk-soft:#E2E8FC;
+  --stop:#9E2A20; --stop-soft:#F8E4E2;
+  --go:#2E6B2A; --go-soft:#E1EFDE;
+  --disp:'Barlow Condensed',Haettenschweiler,'Arial Narrow',sans-serif;
+  --body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+
+.masthead{background:var(--card);border-bottom:1.5px solid var(--ink);padding:12px 16px}
+.masthead h1{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.03em;font-size:26px;line-height:.95;margin:0}
+.masthead p{margin:2px 0 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);font-family:var(--disp);font-weight:600}
+
+/* status */
+.status{position:sticky;top:0;z-index:20;padding:11px 16px;border-bottom:1.5px solid var(--ink);
+  font-family:var(--disp);text-transform:uppercase;letter-spacing:.08em;font-size:19px;font-weight:700}
+.status.go{background:var(--go-soft);color:var(--go)}
+.status.stop{background:var(--stop-soft);color:var(--stop)}
+.status small{display:block;font-family:var(--body);font-size:13px;font-weight:400;letter-spacing:0;
+  text-transform:none;margin-top:3px;line-height:1.35}
+
+.page{max-width:1240px;margin:0 auto;padding:16px 16px 70px}
+@media(min-width:1020px){
+  .page{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;max-width:1400px}
+  .colB{position:sticky;top:64px}
+}
+
+.card{background:var(--card);border:1.5px solid var(--ink);margin-bottom:16px}
+.card > h2{
+  font-family:var(--disp);text-transform:uppercase;letter-spacing:.1em;font-size:15px;font-weight:700;
+  margin:0;padding:11px 14px;border-bottom:1px solid var(--rule);display:flex;gap:9px;align-items:baseline}
+.card > h2 .step{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  border-radius:2px;padding:2px 7px;letter-spacing:0}
+.card > h2 em{font-style:normal;margin-left:auto;font-family:var(--mono);font-size:12px;
+  letter-spacing:0;text-transform:none;color:var(--ink2);font-weight:400}
+.body{padding:14px}
+
+.lab{font-family:var(--disp);text-transform:uppercase;letter-spacing:.1em;font-size:13px;font-weight:600;color:var(--ink2);margin:0 0 7px}
+.lab + .lab, .pills + .lab{margin-top:16px}
+
+/* pill selectors */
+.pills{display:flex;flex-wrap:wrap;gap:7px}
+.pill{font-family:var(--mono);font-size:15px;font-weight:600;min-height:46px;padding:0 15px;
+  border:1.5px solid var(--rule);background:#fff;color:var(--ink2);border-radius:3px;cursor:pointer;flex:0 0 auto}
+.pill:hover{border-color:var(--chalk);color:var(--chalk)}
+.pill[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.pill.wide{flex:1 1 90px}
+
+/* numeric field with steppers */
+.stepper{display:flex;align-items:stretch;gap:0;border:1.5px solid var(--rule);border-radius:3px;background:#fff;overflow:hidden}
+.stepper button{width:48px;min-height:46px;border:0;background:#EDEFE7;color:var(--ink);font-size:23px;
+  line-height:1;cursor:pointer;font-family:var(--mono);flex:0 0 auto}
+.stepper button:hover{background:var(--chalk);color:#fff}
+.stepper input{flex:1 1 auto;min-width:0;width:100%;border:0;text-align:center;font-family:var(--mono);
+  font-size:19px;font-weight:600;color:var(--ink);background:#fff;padding:0}
+.stepper input:focus{outline:2px solid var(--chalk);outline-offset:-2px}
+.stepper input::-webkit-outer-spin-button,.stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.stepper input{-moz-appearance:textfield}
+
+.drow{display:grid;grid-template-columns:76px 1fr;gap:9px;align-items:center;margin-bottom:9px}
+.drow .tag{font-family:var(--disp);text-transform:uppercase;letter-spacing:.07em;font-size:14px;font-weight:600;color:var(--ink2)}
+
+.leftover{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;
+  padding:11px 13px;border-radius:3px;font-family:var(--mono);font-size:15px;font-weight:600}
+.leftover.go{background:var(--go-soft);color:var(--go)}
+.leftover.stop{background:var(--stop-soft);color:var(--stop)}
+.leftover span:first-child{font-family:var(--disp);text-transform:uppercase;letter-spacing:.09em;font-size:14px}
+
+.btn{font-family:var(--disp);text-transform:uppercase;letter-spacing:.09em;font-size:15px;font-weight:700;
+  min-height:48px;padding:0 18px;border:1.5px solid var(--ink);background:var(--ink);color:var(--card);
+  border-radius:3px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:hover{background:var(--chalk);border-color:var(--chalk);color:#fff}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
+
+/* the answer */
+.marks{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule2)}
+.marks li{display:flex;align-items:center;gap:12px;padding:9px 2px;border-bottom:1px solid var(--rule2)}
+.marks .mm{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--chalk);min-width:104px;letter-spacing:-.02em}
+.marks .mm sub{font-family:var(--body);font-size:12px;font-weight:500;color:var(--ink2);vertical-align:baseline;margin-left:3px}
+.marks .who{font-family:var(--disp);text-transform:uppercase;letter-spacing:.08em;font-size:14px;font-weight:600;color:var(--ink2)}
+.marks .tick{width:22px;height:22px;border:1.5px solid var(--rule);border-radius:2px;margin-left:auto;flex:0 0 auto}
+
+.callout{background:var(--chalk-soft);border-left:4px solid var(--chalk);padding:12px 14px;margin:14px 0 0;border-radius:0 3px 3px 0}
+.callout p{margin:0;font-size:14px;line-height:1.5;color:#12307F}
+.callout b{font-family:var(--mono);font-weight:700}
+
+.err{background:var(--stop-soft);border-left:4px solid var(--stop);padding:10px 13px;margin-bottom:9px;border-radius:0 3px 3px 0;font-size:14px;color:var(--stop);line-height:1.45}
+.err:last-child{margin-bottom:0}
+
+.prove{background:#FBF2DC;border:1.5px solid #B07C12;padding:13px;margin:0 0 14px;border-radius:3px}
+.prove p{margin:0 0 11px;font-size:14px;line-height:1.5;color:#6E4C05}
+.prove p b{font-weight:600}
+.prove label{display:flex;gap:10px;align-items:center;font-size:14px;font-weight:600;color:#6E4C05;cursor:pointer;min-height:44px}
+.prove input{width:24px;height:24px;accent-color:#B07C12;flex:0 0 auto}
+.prove.done{display:none}
+
+svg.dwg{display:block;width:100%;height:auto}
+
+details{border-top:1px solid var(--rule)}
+summary{font-family:var(--disp);text-transform:uppercase;letter-spacing:.1em;font-size:13px;font-weight:600;
+  color:var(--ink2);padding:12px 14px;cursor:pointer;list-style:none;display:flex;gap:8px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::before{content:'▸';font-size:12px;color:var(--chalk)}
+details[open] summary::before{content:'▾'}
+summary .val{margin-left:auto;font-family:var(--mono);font-size:13px;color:var(--chalk);font-weight:600;letter-spacing:0}
+details .body{padding-top:0}
+
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:14px}
+th{font-family:var(--disp);text-transform:uppercase;letter-spacing:.08em;font-size:12px;font-weight:700;color:var(--ink2);
+  text-align:right;padding:5px 7px;border-bottom:1.5px solid var(--ink)}
+th:first-child,td:first-child{text-align:left}
+td{padding:7px;text-align:right;border-bottom:1px solid var(--rule2)}
+.note{font-size:13px;color:var(--ink2);line-height:1.5;margin:11px 0 0}
+.note code{font-family:var(--mono);font-size:12.5px;background:#EDEFE7;padding:1px 5px;border-radius:2px}
+
+@media print{
+  body{background:#fff;font-size:12px}
+  .noprint,.masthead,details{display:none!important}
+  .status{position:static;border:0;padding:0 0 8px}
+  .page{display:block;max-width:none;padding:0}
+  .colB{position:static}
+  .card{border:1px solid #000;break-inside:avoid;background:#fff}
+  .marks .mm{font-size:22px}
+  @page{margin:12mm}
+}
+
+.masthead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.swap{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.09em;
+  font-size:14px;font-weight:700;color:#1B4FD8;text-decoration:none;border:1.5px solid #1B4FD8;
+  border-radius:3px;padding:9px 13px;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap}
+.swap:hover{background:#1B4FD8;color:#fff}
+@media print{.swap{display:none}}
+
+.txt{font-family:'Inter',sans-serif;font-size:15px;width:100%;min-height:46px;padding:8px 10px;
+  border:1.5px solid #C9CCC0;border-radius:3px;background:#fff;color:#1C1F1A}
+.txt:focus{outline:2px solid #1B4FD8;outline-offset:-2px}
+#cutbody td:nth-child(1),#cutbody td:nth-child(2),#cutbody td:nth-child(3){font-weight:600}
+
+/* group each field: label + input + its own note read as one block */
+.body > .lab{margin-top:22px;padding-top:16px;border-top:1px solid var(--rule2)}
+.body > .lab:first-child{margin-top:0;padding-top:0;border-top:none}
+.body > .note{margin:7px 0 0;padding-left:1px}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div>
+    <h1>Drawer Set-Out</h1>
+    <p>Blum MOVENTO 760H | 766H &middot; side mount</p>
+  </div>
+  <a class="swap" href="index.html">Häfele UM A &rarr;</a>
+</div>
+
+<div class="status go" id="status">Ready to set out<small>&mdash;</small></div>
+
+<div class="page">
+<div class="colA">
+
+  <section class="card">
+    <h2><span class="step">1</span> Cabinet</h2>
+    <div class="body">
+      <p class="lab">Side panel height</p>
+      <div class="pills" id="hPills"></div>
+      <div class="stepper" style="margin-top:8px">
+        <button type="button" data-step="-10" data-for="panelH">&minus;</button>
+        <input type="number" id="panelH" value="720" inputmode="decimal" aria-label="Side panel height">
+        <button type="button" data-step="10" data-for="panelH">+</button>
+      </div>
+
+      <p class="lab">Inside floor, above panel bottom edge</p>
+      <div class="stepper">
+        <button type="button" data-step="-1" data-for="floor">&minus;</button>
+        <input type="number" id="floor" value="19" inputmode="decimal" aria-label="Carcase base above panel bottom edge">
+        <button type="button" data-step="1" data-for="floor">+</button>
+      </div>
+      <p class="note">Top face of the carcase base. <code>19</code> if the base sits between the sides, <code>0</code> if the sides sit on it.</p>
+
+      <p class="lab">Clear internal width</p>
+      <div class="stepper">
+        <button type="button" data-step="-10" data-for="lw">&minus;</button>
+        <input type="number" id="lw" value="500" inputmode="decimal" aria-label="Clear internal cabinet width">
+        <button type="button" data-step="10" data-for="lw">+</button>
+      </div>
+      <p class="note">Between the two side panels. This drives the drawer box width.</p>
+
+      <p class="lab">Space taken at the top</p>
+      <div class="stepper">
+        <button type="button" data-step="-1" data-for="ceil">&minus;</button>
+        <input type="number" id="ceil" value="0" inputmode="decimal" aria-label="Inside ceiling below panel top edge">
+        <button type="button" data-step="1" data-for="ceil">+</button>
+      </div>
+      <p class="note">The mirror of the inside floor above. If a top panel or rail sits between the sides, put its thickness here &mdash; the top drawer cannot run past it. <code>0</code> if there is nothing above the top drawer, which is the usual case inside a wardrobe.</p>
+
+      <p class="lab">Side panel depth</p>
+      <div class="pills" id="dPills"></div>
+      <div class="stepper" style="margin-top:8px">
+        <button type="button" data-step="-10" data-for="panelD">&minus;</button>
+        <input type="number" id="panelD" value="560" inputmode="decimal" aria-label="Side panel depth">
+        <button type="button" data-step="10" data-for="panelD">+</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2><span class="step">2</span> Runner length NL</h2>
+    <div class="body">
+      <div class="pills" id="rPills"></div>
+      <p class="note" id="rNote"></p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2><span class="step">3</span> <span id="s3title">Drawer fronts</span></h2>
+    <div class="body">
+      <p class="lab">Runner</p>
+      <div class="pills" id="uPills">
+        <button class="pill wide" type="button" data-load="760H" aria-pressed="true">760H &middot; 40 kg</button>
+        <button class="pill wide" type="button" data-load="766H" aria-pressed="false">766H &middot; 60/70 kg</button>
+      </div>
+
+      <p class="lab">Type</p>
+      <div class="pills" id="tPills">
+        <button class="pill wide" type="button" data-t="drawer" aria-pressed="true">Drawer</button>
+        <button class="pill wide" type="button" data-t="inner" aria-pressed="false">Inner drawer</button>
+      </div>
+      <p class="note" id="tNote"></p>
+
+      <p class="lab">Set out from</p>
+      <div class="pills" id="mPills">
+        <button class="pill wide" type="button" data-mode="front" aria-pressed="true">Fronts</button>
+        <button class="pill wide" type="button" data-mode="box" aria-pressed="false">Boxes</button>
+      </div>
+      <p class="note" id="mNote"></p>
+
+      <p class="lab">How many</p>
+      <div class="pills" id="nPills"></div>
+      <div id="drawers" style="margin-top:14px"></div>
+      <div class="leftover go" id="leftover"><span>Left over</span><span id="leftoverV">0 mm</span></div>
+      <div class="btnrow">
+        <button class="btn ghost" type="button" id="fitBtn">Make them fit</button>
+        <button class="btn ghost" type="button" id="eqBtn">Equal boxes</button>
+      </div>
+      <p class="note" id="eqNote"></p>
+    </div>
+  </section>
+
+</div>
+<div class="colB">
+
+  <section class="card">
+    <h2><span class="step">4</span> Hole heights<em id="fromNote"></em></h2>
+    <div class="body">
+      <p class="lab">Measure from</p>
+      <div class="pills noprint" id="fPills">
+        <button class="pill wide" type="button" data-from="bottom" aria-pressed="true">Bottom edge</button>
+        <button class="pill wide" type="button" data-from="top" aria-pressed="false">Top edge</button>
+      </div>
+      <div id="errs" style="margin-top:12px"></div>
+      <div class="prove" id="prove">
+        <p>Hole line heights, one per runner. <b>The bottom one is the only figure left to prove</b> &mdash; set it under &ldquo;Gaps and setback&rdquo;. Every drawer above follows from the heights you enter.</p>
+      </div>
+      <ul class="marks" id="marks"></ul>
+      <div class="callout">
+        <p>Set the runner back <b id="setbackV">3</b> mm from the front edge, and bore <b>&#216;6 &times; 10</b> hook holes in the drawer back &mdash; 7 mm up, 11 mm in, both sides.</p>
+        <p id="pinNote" style="margin-top:8px"></p>
+      </div>
+      <div class="btnrow noprint"><button class="btn" type="button" onclick="window.print()">Print this</button></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Side panel<em id="scaleNote"></em></h2>
+    <div class="body"><svg class="dwg" id="dwg" viewBox="0 0 1000 620" role="img" aria-label="Scaled drawing of the side panel showing each runner mounting surface"></svg></div>
+  </section>
+
+  <section class="card">
+    <details>
+      <summary>Not used on side mount <span class="val" id="shelfVal">18 mm</span></summary>
+      <div class="body">
+        <p class="lab">Shelf thickness</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="shelfT">&minus;</button>
+          <input type="number" id="shelfT" value="18" inputmode="decimal" aria-label="Shelf thickness">
+          <button type="button" data-step="1" data-for="shelfT">+</button>
+        </div>
+        <p class="lab">Fixing hole, back from the front edge</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="pinF">&minus;</button>
+          <input type="number" id="pinF" value="37" inputmode="decimal" aria-label="Front fixing hole from the front edge">
+          <button type="button" data-step="1" data-for="pinF">+</button>
+        </div>
+        <p class="lab">Fixing hole, forward from the back edge</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="pinB">&minus;</button>
+          <input type="number" id="pinB" value="37" inputmode="decimal" aria-label="Rear fixing hole from the back edge">
+          <button type="button" data-step="1" data-for="pinB">+</button>
+        </div>
+        <p class="note">37 puts them on the 32 mm system line. Hole centres sit at the shelf underside &mdash; check against your own supports, they vary.</p>
+        <p class="note" style="color:#9E2A20"><b>These shelves carry the drawer.</b> MOVENTO is rated to 40 kg, which is a lot to hang on shelf pins &mdash; house, dowel or screw them.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Drawer box sizes</summary>
+      <div class="body">
+        <p class="lab" style="margin-top:14px">Drawer side thickness</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="sideT">&minus;</button>
+          <input type="number" id="sideT" value="16" inputmode="decimal" aria-label="Drawer side thickness">
+          <button type="button" data-step="1" data-for="sideT">+</button>
+        </div>
+        <table style="margin-top:12px"><tbody id="boxbody"></tbody></table>
+        <p class="note">Blum fix the <b>inside</b> width at clear width minus 42, so the outside moves with the side thickness. 16 mm is the maximum.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Gaps and setback</summary>
+      <div class="body">
+        <p class="lab" id="gapLab">Gap between fronts</p>
+        <div class="stepper">
+          <button type="button" data-step="-0.5" data-for="gap">&minus;</button>
+          <input type="number" id="gap" value="3" step="0.5" inputmode="decimal" aria-label="Gap">
+          <button type="button" data-step="0.5" data-for="gap">+</button>
+        </div>
+        <p class="lab" style="margin-top:16px">Bottom drawer hole line, above the inside floor</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="anchor">&minus;</button>
+          <input type="number" id="anchor" value="38" inputmode="decimal" aria-label="Bottom runner above the floor">
+          <button type="button" data-step="1" data-for="anchor">+</button>
+        </div>
+        <p class="note" style="color:#9E2A20"><b>Not confirmed.</b> Blum's table gives the hole depths but not this height. Fit one runner, measure from the top of the carcase base to the centre of its hole line, and put that in.</p>
+        <p class="lab" style="margin-top:16px">Runner setback from the front edge</p>
+        <div class="stepper">
+          <button type="button" data-step="-0.5" data-for="setback">&minus;</button>
+          <input type="number" id="setback" value="3" step="0.5" inputmode="decimal" aria-label="Runner setback">
+          <button type="button" data-step="0.5" data-for="setback">+</button>
+        </div>
+        <p class="note">3 mm suits overlay fronts. Inset needs more &mdash; see Blum's setback table.</p>
+        <p class="lab" style="margin-top:16px">Bottom start (fit check only)</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="botOff">&minus;</button>
+          <input type="number" id="botOff" value="0" inputmode="decimal" aria-label="Bottom start">
+          <button type="button" data-step="1" data-for="botOff">+</button>
+        </div>
+      </div>
+    </details>
+  </section>
+
+
+  <section class="card">
+    <h2>Cut list<em>all sizes mm</em></h2>
+    <div class="body">
+      <p class="lab">Box heights</p>
+      <div id="boxHeights"></div>
+      <p class="note">Your call — this is the box, not the front. Blank drops that drawer out of the list.</p>
+      <table style="margin-top:14px">
+        <thead><tr><th>Length</th><th>Width</th><th>Qty</th><th>Material</th><th>Label</th></tr></thead>
+        <tbody id="cutbody"></tbody>
+      </table>
+      <div class="btnrow noprint"><button class="btn ghost" type="button" id="copyBtn">Copy for optimiser</button></div>
+      <p class="note">Length runs with the grain. No joint allowance added &mdash; add your own for rebates or dovetails.</p>
+      <p class="note" style="color:#9E2A20"><b>Side mount needs a recess machined along the bottom of each drawer side</b> &mdash; at least <b>12 mm</b> high to conceal the runner, no more than <b>15 mm</b> deep. Not a sawn size, so it isn't in the list above.</p>
+    </div>
+    <details>
+      <summary>Fronts and face panels</summary>
+      <div class="body">
+        <p class="lab">Front width</p>
+        <div class="stepper">
+          <button type="button" data-step="-10" data-for="frontW">&minus;</button>
+          <input type="number" id="frontW" value="596" inputmode="decimal" aria-label="Drawer front width">
+          <button type="button" data-step="10" data-for="frontW">+</button>
+        </div>
+        <p class="note">The finished front, across the grain. Heights come from the set-out.</p>
+        <p class="lab">Front thickness X</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="frontX">&minus;</button>
+          <input type="number" id="frontX" value="18" inputmode="decimal" aria-label="Decorative front thickness">
+          <button type="button" data-step="1" data-for="frontX">+</button>
+        </div>
+        <p class="note">On an inner drawer the box runs forward into the front, so this adds to the box length and to the depth the cabinet needs.</p>
+        <p class="lab">Front material</p>
+        <input class="txt" type="text" id="matF" value="18mm MDF" aria-label="Front material">
+        <p class="lab">Applied face panel</p>
+        <div class="pills" id="fpPills">
+          <button class="pill wide" type="button" data-fp="no" aria-pressed="true">None</button>
+          <button class="pill wide" type="button" data-fp="yes" aria-pressed="false">Yes</button>
+        </div>
+        <p class="lab">Face panel inset, each edge</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="faceI">&minus;</button>
+          <input type="number" id="faceI" value="0" inputmode="decimal" aria-label="Face panel inset">
+          <button type="button" data-step="1" data-for="faceI">+</button>
+        </div>
+        <p class="lab">Face panel material</p>
+        <input class="txt" type="text" id="matFace" value="19mm Oak" aria-label="Face panel material">
+        <p class="lab">Sub-front thickness</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="subT">&minus;</button>
+          <input type="number" id="subT" value="16" inputmode="decimal" aria-label="Sub-front thickness">
+          <button type="button" data-step="1" data-for="subT">+</button>
+        </div>
+        <p class="lab">Total front thickness</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="frontT">&minus;</button>
+          <input type="number" id="frontT" value="18" inputmode="decimal" aria-label="Total front thickness including any face panel">
+          <button type="button" data-step="1" data-for="frontT">+</button>
+        </div>
+        <p class="lab">Front sits</p>
+        <div class="pills" id="ovPills">
+          <button class="pill wide" type="button" data-ov="overlay" aria-pressed="true">Overlay</button>
+          <button class="pill wide" type="button" data-ov="inset" aria-pressed="false">Inset</button>
+        </div>
+        <p class="note" id="sbNote"></p>
+      </div>
+    </details>
+    <details>
+      <summary>How the box is made</summary>
+      <div class="body">
+        <p class="lab">Construction</p>
+        <div class="pills" id="cPills">
+          <button class="pill" style="flex:1 1 100%;text-align:left" type="button" data-c="A" aria-pressed="false">Sides full depth, base under</button>
+          <button class="pill" style="flex:1 1 100%;text-align:left" type="button" data-c="B" aria-pressed="false">Sides full depth, base grooved in</button>
+          <button class="pill" style="flex:1 1 100%;text-align:left" type="button" data-c="C" aria-pressed="false">Front and back full width, base under</button>
+          <button class="pill" style="flex:1 1 100%;text-align:left" type="button" data-c="D" aria-pressed="true">Base between the sides, front and back on top</button>
+        </div>
+        <p class="lab">Base thickness</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="baseT">&minus;</button>
+          <input type="number" id="baseT" value="18" inputmode="decimal" aria-label="Base thickness">
+          <button type="button" data-step="1" data-for="baseT">+</button>
+        </div>
+        <p class="lab">Base sits above the bottom of the sides</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="recess">&minus;</button>
+          <input type="number" id="recess" value="13" inputmode="decimal" aria-label="Base recess above the bottom of the sides">
+          <button type="button" data-step="1" data-for="recess">+</button>
+        </div>
+        <p class="note">Only used on the last build — it shortens the front and back so they land on top of the base. Blum design their locking devices around a 13 mm bottom recess.</p>
+        <p class="lab">Groove depth</p>
+        <div class="stepper">
+          <button type="button" data-step="-1" data-for="groove">&minus;</button>
+          <input type="number" id="groove" value="6" inputmode="decimal" aria-label="Groove depth">
+          <button type="button" data-step="1" data-for="groove">+</button>
+        </div>
+        <p class="lab">Box material</p>
+        <input class="txt" type="text" id="matS" value="16mm Birch Ply" aria-label="Box material">
+        <p class="lab">Base material</p>
+        <input class="txt" type="text" id="matB" value="18mm Birch Ply" aria-label="Base material">
+        <p class="lab">Shelf depth</p>
+        <div class="stepper">
+          <button type="button" data-step="-10" data-for="shelfD">&minus;</button>
+          <input type="number" id="shelfD" value="560" inputmode="decimal" aria-label="Shelf depth">
+          <button type="button" data-step="10" data-for="shelfD">+</button>
+        </div>
+      </div>
+    </details>
+  </section>
+
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var NLS = [270,300,350,400,450,500,550,600,650,700,750];
+  var nl = 450, measure = 'bottom', mode = 'front', load = '760H', dtype = 'drawer';
+  // Hole spacing - runners, Blum catalogue p.419 (760H | 766H).
+  // First fixing 37 from the front edge, second 32 behind it, then a rear
+  // position off the 32 mm grid. Blum: "rearmost fixing position ensures
+  // optimal stability", so the tool takes the furthest back that fits.
+  var LOADS = {
+    '760H': { nls:[250,270,300,320,350,380,400,420,450,480,500,520,550,600], rear:[160,224,256] },
+    '766H': { nls:[450,500,520,550,580,600,650,700,750],                     rear:[224,256,320,416] }
+  };
+  function depths(m){
+    // 37 / 69 / rear are positions on the runner itself. The runner sits
+    // m.setback back from the front edge, so every hole moves with it.
+    var sb = m.setback, d = [sb + 37, sb + 69], back = null;
+    LOADS[load].rear.forEach(function(r){
+      if (37 + r <= m.nl - 10 && sb + 37 + r <= m.panelD - 15) back = sb + 37 + r;
+    });
+    if (back) d.push(back);
+    return d;
+  }
+  var S = { front:{ list:[140,283,283], gap:3, botOff:0 },
+            box:  { list:[90,180,180],  gap:50, botOff:46 } };
+  var TXT = { front:{ title:'Drawer fronts', tag:'Front', gapLab:'Gap between fronts',
+                      note:'Front heights set the spacing from one runner surface to the next. They have to fill the panel.' },
+              box:  { title:'Drawer boxes',  tag:'Box',   gapLab:'Gap between boxes',
+                      note:'Box heights set the spacing from one runner surface to the next.' } };
+
+  var $ = function(id){ return document.getElementById(id); };
+  var val = function(id, fb){ var v = parseFloat($(id).value); return isFinite(v) ? v : fb; };
+  var fmt = function(v){ return (Math.round(v*10)/10).toString(); };
+
+  function pills(host, items, get, set){
+    host.innerHTML = items.map(function(it){
+      return '<button class="pill wide" type="button" data-v="'+it.v+'" aria-pressed="false">'+it.t+'</button>';
+    }).join('');
+    host._get = get;
+    host.querySelectorAll('.pill').forEach(function(b){
+      b.addEventListener('click', function(){ set(parseFloat(b.dataset.v)); sync(); compute(); });
+    });
+  }
+  function markPills(host){
+    if(!host._get) return;
+    var cur = host._get();
+    host.querySelectorAll('.pill').forEach(function(b){
+      b.setAttribute('aria-pressed', parseFloat(b.dataset.v)===cur ? 'true':'false');
+    });
+  }
+
+  pills($('hPills'), [720,760,1970,2150].map(function(v){return {v:v,t:String(v)};}),
+    function(){ return val('panelH',0); }, function(v){ $('panelH').value = v; });
+  pills($('dPills'), [500,560,600,650].map(function(v){return {v:v,t:String(v)};}),
+    function(){ return val('panelD',0); }, function(v){ $('panelD').value = v; });
+  function nlPills(){
+    pills($('rPills'), LOADS[load].nls.map(function(v){return {v:v,t:String(v)};}),
+      function(){ return nl; }, function(v){ nl = v; });
+  }
+  nlPills();
+  pills($('nPills'), [1,2,3,4,5].map(function(v){return {v:v,t:String(v)};}),
+    function(){ return S[mode].list.length; }, function(v){ setCount(v); });
+
+  function setCount(n){
+    var st = S[mode], m = model();
+    var avail = m.panelH - st.botOff - st.gap*(n-1);
+    while(st.list.length > n) st.list.pop();
+    while(st.list.length < n) st.list.push(0);
+    var each = Math.round(avail/n);
+    st.list = st.list.map(function(){ return each; });
+    st.list[0] = Math.round(avail - each*(n-1));
+    renderDrawers();
+    if (typeof renderBoxHeights === "function"){ renderBoxHeights(); cutlist(); }
+  }
+
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('[data-step]');
+    if(!b) return;
+    var inp = $(b.dataset.for) || document.querySelector('[data-fid="'+b.dataset.for+'"]');
+    if(!inp) return;
+    var v = parseFloat(inp.value); if(!isFinite(v)) v = 0;
+    inp.value = Math.round((v + parseFloat(b.dataset.step))*10)/10;
+    inp.dispatchEvent(new Event('input',{bubbles:true}));
+  });
+
+  function renderDrawers(){
+    var st = S[mode], tag = TXT[mode].tag;
+    $('drawers').innerHTML = st.list.map(function(h,i){
+      return '<div class="drow"><span class="tag">'+tag+' '+(i+1)+'</span>'+
+        '<div class="stepper">'+
+          '<button type="button" data-step="-5" data-for="dw'+i+'">&minus;</button>'+
+          '<input type="number" data-fid="dw'+i+'" data-i="'+i+'" value="'+h+'" inputmode="decimal" aria-label="'+tag+' '+(i+1)+' height">'+
+          '<button type="button" data-step="5" data-for="dw'+i+'">+</button>'+
+        '</div></div>';
+    }).join('');
+    $('drawers').querySelectorAll('input').forEach(function(inp){
+      inp.addEventListener('input', function(){
+        var v = parseFloat(inp.value);
+        S[mode].list[+inp.dataset.i] = isFinite(v) ? v : 0;
+        compute();
+      });
+    });
+  }
+
+  $('eqBtn').addEventListener('click', function(){
+    var m = model(), st = S[mode], n = st.list.length;
+    var avail = m.panelH - m.ceilOff - m.floor - m.anchor;   // bottom hole line up to the ceiling
+    var pitch = avail / n;
+    var lower = Math.round(pitch - st.gap);
+    var out = [];
+    for (var i = 0; i < n - 1; i++) out.push(lower);
+    out.push(Math.round(m.panelH - st.botOff - lower*(n-1) - st.gap*(n-1)));
+    st.list = out;
+    renderDrawers(); compute();
+    if (typeof renderBoxHeights === 'function') renderBoxHeights();
+    $('eqNote').innerHTML = (n < 2) ? '' : 'All ' + n + ' boxes now get <b>' + fmt(Math.round(pitch)) +
+      ' mm</b> each \u2014 they are equal. It is the <b>fronts</b> that differ: ' + lower + ' on the lower ones and ' +
+      out[n-1] + ' on the top. Every front sits ' + fmt(m.floor + m.anchor - st.botOff) +
+      ' mm below its own runner, and that has to come out of a front somewhere.';
+  });
+
+  $('fitBtn').addEventListener('click', function(){
+    var m = model(), st = S[mode];
+    var avail = m.panelH - st.botOff - st.gap*(st.list.length-1);
+    var tot = st.list.reduce(function(a,b){return a+b;},0) || 1;
+    var sc = st.list.map(function(h){ return Math.round(h/tot*avail); });
+    sc[sc.length-1] += avail - sc.reduce(function(a,b){return a+b;},0);
+    st.list = sc;
+    renderDrawers(); compute();
+    if (typeof renderBoxHeights === 'function') renderBoxHeights();
+    $('eqNote').textContent = '';
+  });
+
+  function model(){
+    var st = S[mode];
+    st.gap = val('gap', st.gap);
+    st.botOff = val('botOff', st.botOff);
+    var m = { panelH: val('panelH',720), panelD: val('panelD',560), lw: val('lw',500),
+              floor: val('floor',19), shelfT: val('shelfT',18), anchor: val('anchor',38), sideT: val('sideT',16),
+              setback: val('setback',3), gap: st.gap, botOff: st.botOff, ceilOff: val('ceil',0),
+              pinF: val('pinF',37), pinB: val('pinB',37),
+              nl: nl, rlen: nl+11, rows: [] };
+    m.X = (dtype === 'inner') ? val('frontX',18) : 0;
+    m.boxLen = nl - 10 + m.X;
+    m.setback = val('setback',3) + m.X;    // inner drawer clears the front
+    m.mind = nl + m.X + val('setback',3);
+    var y = st.botOff, hole = m.floor + m.anchor;
+    st.list.forEach(function(h,i){
+      m.rows.push({ n:i+1, h:h, bottom:y, surf:hole, under:null });
+      y += h + m.gap;
+      hole += h + m.gap;
+    });
+    m.depths = depths(m);
+    m.rows.forEach(function(r,i){
+      var nxt = m.rows[i+1];
+      var ceiling = nxt ? nxt.surf : m.panelH - m.ceilOff;
+      r.gapAbove = ceiling - r.surf;
+    });
+    m.used = y - m.gap;
+    m.left = m.panelH - m.used;
+    return m;
+  }
+
+  function problems(m){
+    var out = [];
+    if (m.panelD < m.mind)
+      out.push('Panel is only '+fmt(m.panelD)+' mm deep. NL '+m.nl+' needs '+m.mind+' mm. Use a shorter runner or a deeper cabinet.');
+    if (m.left < -0.5)
+      out.push(TXT[mode].title+' are '+fmt(-m.left)+' mm too tall for the panel. Tap "Make them fit".');
+    m.rows.forEach(function(r){
+      if (r.surf > m.panelH - 10)
+        out.push('Drawer '+r.n+': hole line at '+fmt(r.surf)+' mm runs off the top of the panel.');
+      if (r.surf < m.floor)
+        out.push('Drawer '+r.n+': hole line at '+fmt(r.surf)+' mm is below the carcase base.');
+      if (r.h < 80)
+        out.push('Drawer '+r.n+' is only '+fmt(r.h)+' mm. Tight for MOVENTO - test fit one first.');
+    });
+    if (m.sideT > 16) out.push('Drawer sides are '+fmt(m.sideT)+' mm. Blum state 16 mm maximum — check with them whether reducing the bottom of the side to 16 is acceptable.');
+    if (m.anchor < 38)
+      out.push('Bottom runner is '+fmt(m.anchor)+' mm above the inside floor. Blum need at least 38 (39 if the runners go in before the cabinet is assembled).');
+    if (m.rows.length){
+      var top = m.rows[m.rows.length-1];
+      if (top.gapAbove < 7)
+        out.push('Only '+fmt(top.gapAbove)+' mm above the top runner. Blum need at least 7.');
+    }
+    if (typeof boxH !== 'undefined' && boxH) m.rows.forEach(function(r,i){
+      if (boxH[i] && boxH[i] > r.gapAbove)
+        out.push('Box '+r.n+' is '+fmt(boxH[i])+' mm but there is only '+fmt(r.gapAbove)+' mm to the next runner.');
+    });
+    return out;
+  }
+
+  function draw(m){
+    var W=1000, PL=104, PR=30, PT=26, PB=64;
+    var s = (W-PL-PR)/Math.max(m.panelD,1), ph = m.panelH*s, H = ph+PT+PB;
+    var X = function(v){ return PL+v*s; }, Y = function(v){ return PT+ph-v*s; };
+    var g = ['<rect width="'+W+'" height="'+H+'" fill="#F8F9F4"/>'];
+    g.push('<rect x="'+X(0)+'" y="'+Y(m.panelH)+'" width="'+(m.panelD*s)+'" height="'+ph+'" fill="#fff" stroke="#1C1F1A" stroke-width="1.6"/>');
+    g.push('<line x1="'+X(0)+'" y1="'+Y(m.panelH)+'" x2="'+X(0)+'" y2="'+Y(0)+'" stroke="#1C1F1A" stroke-width="5"/>');
+    g.push('<text x="'+(X(0)-8)+'" y="'+(Y(m.panelH)-9)+'" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="15" letter-spacing="1.5" fill="#5C6157">FRONT EDGE</text>');
+
+    if (m.floor > 0){
+      g.push('<rect x="'+X(0)+'" y="'+Y(m.floor)+'" width="'+(m.panelD*s)+'" height="'+(m.floor*s)+'" fill="#5C6157" opacity="0.13"/>');
+      g.push('<line x1="'+X(0)+'" y1="'+Y(m.floor)+'" x2="'+X(m.panelD)+'" y2="'+Y(m.floor)+'" stroke="#5C6157" stroke-width="1.4"/>');
+      g.push('<text x="'+(X(m.panelD)-7)+'" y="'+(Y(m.floor)-7)+'" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="14" letter-spacing="1.3" fill="#5C6157">CARCASE BASE</text>');
+    }
+
+    if (m.ceilOff > 0){
+      g.push('<rect x="'+X(0)+'" y="'+Y(m.panelH)+'" width="'+(m.panelD*s)+'" height="'+(m.ceilOff*s)+'" fill="#5C6157" opacity="0.13"/>');
+      g.push('<line x1="'+X(0)+'" y1="'+Y(m.panelH-m.ceilOff)+'" x2="'+X(m.panelD)+'" y2="'+Y(m.panelH-m.ceilOff)+'" stroke="#5C6157" stroke-width="1.4"/>');
+      g.push('<text x="'+(X(m.panelD)-7)+'" y="'+(Y(m.panelH-m.ceilOff)+16)+'" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="14" letter-spacing="1.3" fill="#5C6157">TOP PANEL</text>');
+    }
+
+    var back = Math.min(m.setback + m.rlen, m.panelD);
+
+    // drawer boxes, sitting on their runner
+    m.rows.forEach(function(r,i){
+      var bh = (typeof boxH !== 'undefined' && boxH && boxH[i]) ? boxH[i] : 0;
+      if (!bh) return;
+      var bx0 = X(m.setback), bx1 = X(Math.min(m.setback + m.boxLen, m.panelD));
+      g.push('<rect x="'+bx0+'" y="'+Y(r.surf+bh)+'" width="'+(bx1-bx0)+'" height="'+(bh*s)+'" fill="#1B4FD8" opacity="0.06" stroke="#1B4FD8" stroke-width="1" stroke-dasharray="5 3"/>');
+      g.push('<text x="'+(bx0+7)+'" y="'+(Y(r.surf+bh)+16)+'" font-family="IBM Plex Mono,monospace" font-size="12" fill="#1B4FD8" opacity="0.75">box '+fmt(bh)+'</text>');
+      if (m.setback + m.boxLen > m.panelD)
+        g.push('<text x="'+(X(m.panelD)-6)+'" y="'+(Y(r.surf)-22)+'" text-anchor="end" font-family="Barlow Condensed,sans-serif" font-size="14" fill="#9E2A20">BOX OVERRUNS THE PANEL</text>');
+    });
+
+    // decorative fronts, standing off the front edge
+    var fw = Math.max(9, (m.X || 18) * s);
+    m.rows.forEach(function(r){
+      var top = Math.min(r.bottom + r.h, m.panelH);
+      g.push('<rect x="'+(X(0)-fw-4)+'" y="'+Y(top)+'" width="'+fw+'" height="'+Math.max((top-r.bottom)*s,0)+'" fill="#5C6157" opacity="0.30" stroke="#5C6157" stroke-width="0.8"/>');
+    });
+
+    m.rows.forEach(function(r){
+      g.push('<line x1="'+X(0)+'" y1="'+Y(r.surf)+'" x2="'+X(m.panelD)+'" y2="'+Y(r.surf)+'" stroke="#1B4FD8" stroke-width="0.9" opacity="0.4"/>');
+      g.push('<text x="'+(X(m.setback)+8)+'" y="'+(Y(r.surf)-9)+'" font-family="Barlow Condensed,sans-serif" font-size="15" letter-spacing="1.2" fill="#1B4FD8">DRAWER '+r.n+'</text>');
+      m.depths.forEach(function(dp){
+        if (dp <= 0 || dp >= m.panelD) return;
+        g.push('<circle cx="'+X(dp)+'" cy="'+Y(r.surf)+'" r="6.5" fill="#fff" stroke="#1B4FD8" stroke-width="2"/>');
+        g.push('<circle cx="'+X(dp)+'" cy="'+Y(r.surf)+'" r="1.8" fill="#1B4FD8"/>');
+      });
+    });
+
+    m.depths.forEach(function(dp){
+      if (dp <= 0 || dp >= m.panelD) return;
+      g.push('<line x1="'+X(dp)+'" y1="'+Y(0)+'" x2="'+X(dp)+'" y2="'+(Y(0)+22)+'" stroke="#1B4FD8" stroke-width="0.8" stroke-dasharray="4 4"/>');
+      g.push('<text x="'+X(dp)+'" y="'+(Y(0)+38)+'" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="14" font-weight="700" fill="#1B4FD8">'+fmt(dp)+'</text>');
+    });
+    g.push('<text x="'+X(0)+'" y="'+(Y(0)+56)+'" font-family="Barlow Condensed,sans-serif" font-size="13" letter-spacing="1.2" fill="#5C6157">DEPTH FROM FRONT EDGE</text>');
+    var ly = PT + 4;
+    g.push('<rect x="'+(W-232)+'" y="'+ly+'" width="16" height="11" fill="#5C6157" opacity="0.30" stroke="#5C6157" stroke-width="0.8"/>');
+    g.push('<text x="'+(W-210)+'" y="'+(ly+10)+'" font-family="Barlow Condensed,sans-serif" font-size="13" letter-spacing="1.1" fill="#5C6157">FRONT</text>');
+    g.push('<rect x="'+(W-150)+'" y="'+ly+'" width="16" height="11" fill="#1B4FD8" opacity="0.10" stroke="#1B4FD8" stroke-width="1" stroke-dasharray="4 2"/>');
+    g.push('<text x="'+(W-128)+'" y="'+(ly+10)+'" font-family="Barlow Condensed,sans-serif" font-size="13" letter-spacing="1.1" fill="#1B4FD8">BOX</text>');
+    g.push('<circle cx="'+(W-78)+'" cy="'+(ly+5)+'" r="5.5" fill="#fff" stroke="#1B4FD8" stroke-width="2"/>');
+    g.push('<text x="'+(W-64)+'" y="'+(ly+10)+'" font-family="Barlow Condensed,sans-serif" font-size="13" letter-spacing="1.1" fill="#1B4FD8">RUNNER</text>');
+
+    var lx = PL-24;
+    g.push('<line x1="'+lx+'" y1="'+Y(0)+'" x2="'+lx+'" y2="'+Y(m.panelH)+'" stroke="#5C6157" stroke-width="1"/>');
+    m.rows.forEach(function(r){
+      var yy = Y(r.surf), shown = (measure==='top') ? m.panelH-r.surf : r.surf;
+      g.push('<line x1="'+(lx-4)+'" y1="'+yy+'" x2="'+X(0)+'" y2="'+yy+'" stroke="#5C6157" stroke-width="0.8" opacity="0.5"/>');
+      g.push('<text x="'+(lx-8)+'" y="'+(yy+4)+'" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="14" font-weight="700" fill="#1B4FD8">'+fmt(shown)+'</text>');
+    });
+
+    var svg = $('dwg');
+    svg.setAttribute('viewBox','0 0 '+W+' '+Math.round(H));
+    svg.innerHTML = g.join('');
+    $('scaleNote').textContent = fmt(m.panelD)+' \u00d7 '+fmt(m.panelH)+' mm, to scale';
+  }
+
+  function sync(){
+    ['hPills','dPills','rPills','nPills'].forEach(function(id){ markPills($(id)); });
+    $('fPills').querySelectorAll('.pill').forEach(function(b){
+      b.setAttribute('aria-pressed', b.dataset.from===measure ? 'true':'false'); });
+    $('mPills').querySelectorAll('.pill').forEach(function(b){
+      b.setAttribute('aria-pressed', b.dataset.mode===mode ? 'true':'false'); });
+    $('tPills').querySelectorAll('.pill').forEach(function(b){
+    b.addEventListener('click', function(){
+      dtype = b.dataset.t;
+      $('tPills').querySelectorAll('.pill').forEach(function(x){
+        x.setAttribute('aria-pressed', x.dataset.t===dtype ? 'true':'false'); });
+      compute();
+    });
+  });
+  $('frontX').addEventListener('input', compute);
+
+  $('uPills').querySelectorAll('.pill').forEach(function(b){
+      b.setAttribute('aria-pressed', b.dataset.load===load ? 'true':'false'); });
+  }
+
+  function compute(){
+    var m = model(), probs = problems(m);
+    var n = m.rows.length - 1;
+    var st = $('status');
+    st.className = 'status ' + (probs.length ? 'stop':'go');
+    st.innerHTML = probs.length ? 'Fix this first<small>'+probs[0]+'</small>'
+      : 'Ready to drill<small>'+(m.rows.length*m.depths.length)+' holes per side panel \u00b7 '+load+' NL '+m.nl+'</small>';
+    $('errs').innerHTML = probs.map(function(p){ return '<div class="err">'+p+'</div>'; }).join('');
+
+    var lo = $('leftover');
+    lo.className = 'leftover ' + (m.left < -0.5 ? 'stop':'go');
+    $('leftoverV').textContent = fmt(m.left)+' mm';
+
+    $('marks').innerHTML = m.rows.map(function(r){
+      var shown = (measure==='top') ? m.panelH-r.surf : r.surf;
+      var who = 'Drawer ' + r.n;
+      return '<li><span class="mm">'+fmt(shown)+'<sub>mm</sub></span><span class="who">'+who+'</span><span class="tick"></span></li>';
+    }).join('');
+
+    $('fromNote').textContent = 'from the '+measure+' edge';
+    $('setbackV').textContent = fmt(m.setback);
+    $('pinNote').innerHTML = (dtype==='inner' ? 'Runner set back <b>'+fmt(m.setback)+'</b> mm to clear the front. ' : '') +
+      'Drill at <b>' + m.depths.map(fmt).join('</b>, <b>') +
+      '</b> mm back from the front edge on every line above. <b>&#216;5</b> for system screws (&#216;6 &times; 14.5, 661.1450.HG), ' +
+      'or pilot for chipboard screws (&#216;3.5 &times; 15, 609.1500).';
+    $('shelfVal').textContent = fmt(m.shelfT)+' mm';
+    $('gapLab').textContent = TXT[mode].gapLab;
+    $('mNote').textContent = TXT[mode].note;
+    $('s3title').textContent = TXT[mode].title;
+    $('rNote').innerHTML = 'Runner length <code>'+m.rlen+' mm</code>. Needs a cabinet at least <code>'+m.mind+' mm</code> deep.';
+    $('tNote').textContent = (dtype === 'inner')
+      ? 'Inner drawer: it runs behind a front, so the runner sits back by the front thickness and every hole moves with it. Box length is NL \u2212 10 + front thickness.'
+      : 'Standard drawer: the front fixes to the box. Box length is NL \u2212 10.';
+    $('boxbody').innerHTML = [
+      ['Box OUTSIDE width', fmt(m.lw-42+2*m.sideT)+' mm'],
+      ['Box inside width', fmt(m.lw-42)+' mm'],
+      ['Box length', fmt(m.boxLen)+' mm'],
+      ['Rear hook bores', '\u00d86 \u00d7 10 deep'],
+      ['Min rear notch', '50 mm'],
+      ['Side recess', '12 mm high min, 15 deep max'],
+      ['Runner takes', '21 mm off each side']
+    ].map(function(r){ return '<tr><td>'+r[0]+'</td><td style="text-align:right;color:#1B4FD8;font-weight:600">'+r[1]+'</td></tr>'; }).join('');
+
+    draw(m); sync(); cutlist();
+  }
+
+  $('fPills').querySelectorAll('.pill').forEach(function(b){
+    b.addEventListener('click', function(){ measure = b.dataset.from; sync(); compute(); }); });
+  $('uPills').querySelectorAll('.pill').forEach(function(b){
+    b.addEventListener('click', function(){
+      load = b.dataset.load;
+      if (LOADS[load].nls.indexOf(nl) < 0) nl = LOADS[load].nls[0];
+      nlPills(); sync(); compute();
+    }); });
+  $('mPills').querySelectorAll('.pill').forEach(function(b){
+    b.addEventListener('click', function(){
+      mode = b.dataset.mode;
+      $('gap').value = S[mode].gap; $('botOff').value = S[mode].botOff;
+      renderDrawers(); sync(); compute();
+    }); });
+
+  ['panelH','panelD','lw','sideT','floor','ceil','shelfT','pinF','pinB','anchor','setback','gap','botOff'].forEach(function(id){
+    $(id).addEventListener('input', function(){ compute(); if (typeof renderBoxHeights==='function') renderBoxHeights(); }); });
+
+  renderDrawers();
+  compute();
+
+  var boxH = [100,180,180,180,180];
+  var build = 'D';
+
+  function renderBoxHeights(){
+    var n = S[mode].list.length, m0 = model();
+    $('boxHeights').innerHTML = boxH.slice(0,n).map(function(h,i){
+      var mx = (m0.rows[i] ? fmt(m0.rows[i].gapAbove) : '?');
+      return '<div class="drow"><span class="tag">Box '+(i+1)+'<br><span style="font-family:var(--mono);font-size:11px;color:#1B4FD8">gap '+mx+'</span></span>'+
+        '<div class="stepper">'+
+          '<button type="button" data-step="-5" data-for="bh'+i+'">&minus;</button>'+
+          '<input type="number" data-bh="'+i+'" data-fid="bh'+i+'" value="'+h+'" inputmode="decimal" aria-label="Box '+(i+1)+' height">'+
+          '<button type="button" data-step="5" data-for="bh'+i+'">+</button>'+
+        '</div></div>';
+    }).join('');
+    $('boxHeights').querySelectorAll('input').forEach(function(inp){
+      inp.addEventListener('input', function(){
+        var v = parseFloat(inp.value);
+        boxH[+inp.dataset.bh] = isFinite(v) ? v : 0;
+        compute();
+      });
+    });
+  }
+
+  function parts(){
+    if (!boxH) return [];   // compute() can fire before this block initialises
+    var m = model(), g = val('groove',6), t = m.sideT, OW = (m.lw-42+2*m.sideT), IW = (m.lw-42), D = m.boxLen;
+    var ms = $('matS').value, mb = $('matB').value, rows = [];
+    S[mode].list.forEach(function(x,i){
+      var h = boxH[i];
+      if (!h) return;
+      var bt = val('baseT',18), rc = val('recess',13);
+      var sideL = (build==='C') ? D-2*t : D;
+      var fbL   = (build==='C') ? OW : IW;
+      var fbH   = (build==='D') ? h-rc-bt : h;
+      var baseL = (build==='B') ? D-2*t+2*g : D;
+      var baseW = (build==='B'||build==='D') ? IW+2*g : OW;
+      rows.push([ sideL, h,   2, ms, 'D'+(i+1)+' Side' ]);
+      rows.push([ fbL,   fbH, 2, ms, 'D'+(i+1)+' Front + Back' ]);
+      rows.push([ baseL, baseW, 1, mb, 'D'+(i+1)+' Base' ]);
+    });
+
+    frontParts(rows);
+    return rows;
+  }
+
+  function cutlist(){
+    var rows = parts();
+    $('cutbody').innerHTML = rows.map(function(r){
+      return '<tr><td>'+fmt(r[0])+'</td><td>'+fmt(r[1])+'</td><td>'+r[2]+'</td><td style="text-align:left">'+r[3]+'</td><td style="text-align:left">'+r[4]+'</td></tr>';
+    }).join('') || '<tr><td colspan="5" style="text-align:left;color:#5C6157">Enter a box height above.</td></tr>';
+  }
+
+  $('cPills').querySelectorAll('.pill').forEach(function(b){
+    b.addEventListener('click', function(){
+      build = b.dataset.c;
+      $('cPills').querySelectorAll('.pill').forEach(function(x){
+        x.setAttribute('aria-pressed', x.dataset.c===build ? 'true':'false'); });
+      cutlist();
+    });
+  });
+  ['groove','baseT','recess','matS','matB','shelfD'].forEach(function(id){
+    $(id).addEventListener('input', cutlist); });
+
+  $('copyBtn').addEventListener('click', function(){
+    var txt = 'Length\tWidth\tQuantity\tMaterial\tLabel\n' +
+      parts().map(function(r){ return r.join('\t'); }).join('\n');
+    var btn = $('copyBtn');
+    try {
+      navigator.clipboard.writeText(txt).then(function(){
+        btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = 'Copy for optimiser'; }, 1600);
+      }, function(){ btn.textContent = 'Copy blocked - select the table'; });
+    } catch(e){ btn.textContent = 'Copy blocked - select the table'; }
+  });
+
+
+  var facePanel = 'no';
+  function frontParts(rows){
+    if (mode !== 'front') return;
+    var fw = val('frontW',596), fi = val('faceI',0);
+    var mf = $('matF').value, mfa = $('matFace').value;
+    S[mode].list.forEach(function(fh,i){
+      if (!fh) return;
+      rows.push([ fw, fh, 1, mf, 'D'+(i+1)+' Front' ]);
+      if (facePanel === 'yes')
+        rows.push([ fw-2*fi, fh-2*fi, 1, mfa, 'D'+(i+1)+' Face panel' ]);
+    });
+  }
+  $('fpPills').querySelectorAll('.pill').forEach(function(b){
+    b.addEventListener('click', function(){
+      facePanel = b.dataset.fp;
+      $('fpPills').querySelectorAll('.pill').forEach(function(x){
+        x.setAttribute('aria-pressed', x.dataset.fp===facePanel ? 'true':'false'); });
+      cutlist();
+    });
+  });
+  ['frontW','faceI','matF','matFace'].forEach(function(id){
+    $(id).addEventListener('input', cutlist); });
+
+  var overlay = 'overlay';
+  function applySetback(){
+    var sb = (overlay === 'inset') ? val('subT',16) + val('frontT',18) - 13 : 3;
+    $('setback').value = Math.round(sb*10)/10;
+    $('sbNote').textContent = overlay === 'inset'
+      ? 'Inset: setback = sub-front + total front thickness \u2212 13, Blum\u2019s figure. Now ' + sb + ' mm, so the cabinet has to be deeper to match.'
+      : 'Overlay fronts sit proud, so the setback stays at 3 mm however thick the front build is.';
+    compute();
+  }
+  $('ovPills').querySelectorAll('.pill').forEach(function(b){
+    b.addEventListener('click', function(){
+      overlay = b.dataset.ov;
+      $('ovPills').querySelectorAll('.pill').forEach(function(x){
+        x.setAttribute('aria-pressed', x.dataset.ov===overlay ? 'true':'false'); });
+      applySetback();
+    });
+  });
+  ['subT','frontT'].forEach(function(id){ $(id).addEventListener('input', applySetback); });
+  applySetback();
+
+  renderBoxHeights();
+  cutlist();
+
+})();
+</script>
+</body>
+</html>
